@@ -13,11 +13,8 @@ Below we provide some tips for what to do and what not to do when you build mach
 * In the publication, explain what the result entails and the limitations of the model. 
 * When possible, use interpretable and/or parsimonious models. Think Occam's razor. 
 * Make data and code available to others if possible. 
-* 
-
 
 ### Don'ts  
 
 * Don't alter the raw data. Use a script to process data instead. 
 * Don't over interpret the result. For example, if the samples all come from one geographic area, you might not be able to generalize the result to other areas.  
-* 
