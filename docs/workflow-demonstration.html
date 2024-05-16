@@ -12,7 +12,7 @@
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="github-repo" content="nataliegnelson/ml_primer" />
+  <meta name="github-repo" content="snprim/ml_primer_mine" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Workflow Demonstration | Machine Learning Guidelines for Natural Resource Management Practitioners" />
@@ -267,16 +267,16 @@ div.csl-indent {
 <div id="workflow-demonstration" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Workflow Demonstration<a href="workflow-demonstration.html#workflow-demonstration" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In this section, we use a dataset to exemplify a typical workflow for constructing ML models. We skip exploratory data analysis, since we have already addressed that aspect in <a href="data.html#data">Data</a>. The dataset contains wine quality and traits, and our goal is to predict the quality of wine using the traits. The dataset can be found <a href="https://www.kaggle.com/datasets/yasserh/wine-quality-dataset">here</a>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="workflow-demonstration.html#cb9-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">eval =</span> <span class="cn">TRUE</span>, <span class="at">cache =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-2"><a href="workflow-demonstration.html#cb9-2" tabindex="-1"></a><span class="fu">library</span>(tree)</span>
-<span id="cb9-3"><a href="workflow-demonstration.html#cb9-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb9-4"><a href="workflow-demonstration.html#cb9-4" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb9-5"><a href="workflow-demonstration.html#cb9-5" tabindex="-1"></a><span class="fu">library</span>(rattle)</span>
-<span id="cb9-6"><a href="workflow-demonstration.html#cb9-6" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="workflow-demonstration.html#cb7-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">eval =</span> <span class="cn">TRUE</span>, <span class="at">cache =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-2"><a href="workflow-demonstration.html#cb7-2" tabindex="-1"></a><span class="fu">library</span>(tree)</span>
+<span id="cb7-3"><a href="workflow-demonstration.html#cb7-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-4"><a href="workflow-demonstration.html#cb7-4" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb7-5"><a href="workflow-demonstration.html#cb7-5" tabindex="-1"></a><span class="fu">library</span>(rattle)</span>
+<span id="cb7-6"><a href="workflow-demonstration.html#cb7-6" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span></code></pre></div>
 <div id="prepare-data" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Prepare Data<a href="workflow-demonstration.html#prepare-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We first read in the data and rename the variables, so coding is easier.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="workflow-demonstration.html#cb10-1" tabindex="-1"></a>wine <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;materials/winequality-red.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&#39;;&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="workflow-demonstration.html#cb8-1" tabindex="-1"></a>wine <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;materials/winequality-red.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&#39;;&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 1599 Columns: 12
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;;&quot;
@@ -284,57 +284,57 @@ div.csl-indent {
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="workflow-demonstration.html#cb12-1" tabindex="-1"></a><span class="co"># shorten variable names</span></span>
-<span id="cb12-2"><a href="workflow-demonstration.html#cb12-2" tabindex="-1"></a>fa <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">fixed acidity</span><span class="st">`</span></span>
-<span id="cb12-3"><a href="workflow-demonstration.html#cb12-3" tabindex="-1"></a>va <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span><span class="st">`</span><span class="at">volatile acidity</span><span class="st">`</span>)</span>
-<span id="cb12-4"><a href="workflow-demonstration.html#cb12-4" tabindex="-1"></a>ca <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span><span class="st">`</span><span class="at">citric acid</span><span class="st">`</span>)</span>
-<span id="cb12-5"><a href="workflow-demonstration.html#cb12-5" tabindex="-1"></a>rs <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">residual sugar</span><span class="st">`</span></span>
-<span id="cb12-6"><a href="workflow-demonstration.html#cb12-6" tabindex="-1"></a>ch <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span>chlorides)</span>
-<span id="cb12-7"><a href="workflow-demonstration.html#cb12-7" tabindex="-1"></a>fsd <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">free sulfur dioxide</span><span class="st">`</span></span>
-<span id="cb12-8"><a href="workflow-demonstration.html#cb12-8" tabindex="-1"></a>tsd <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">total sulfur dioxide</span><span class="st">`</span></span>
-<span id="cb12-9"><a href="workflow-demonstration.html#cb12-9" tabindex="-1"></a>den <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span>density)</span>
-<span id="cb12-10"><a href="workflow-demonstration.html#cb12-10" tabindex="-1"></a>ph <span class="ot">&lt;-</span> wine<span class="sc">$</span>pH</span>
-<span id="cb12-11"><a href="workflow-demonstration.html#cb12-11" tabindex="-1"></a>sul <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span>sulphates)</span>
-<span id="cb12-12"><a href="workflow-demonstration.html#cb12-12" tabindex="-1"></a>al <span class="ot">&lt;-</span> wine<span class="sc">$</span>alcohol</span>
-<span id="cb12-13"><a href="workflow-demonstration.html#cb12-13" tabindex="-1"></a>qual <span class="ot">&lt;-</span> wine<span class="sc">$</span>quality</span>
-<span id="cb12-14"><a href="workflow-demonstration.html#cb12-14" tabindex="-1"></a>winez <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(fa, va, ca, rs, ch, fsd, tsd, den, ph, sul, al, qual)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="workflow-demonstration.html#cb10-1" tabindex="-1"></a><span class="co"># shorten variable names</span></span>
+<span id="cb10-2"><a href="workflow-demonstration.html#cb10-2" tabindex="-1"></a>fa <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">fixed acidity</span><span class="st">`</span></span>
+<span id="cb10-3"><a href="workflow-demonstration.html#cb10-3" tabindex="-1"></a>va <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span><span class="st">`</span><span class="at">volatile acidity</span><span class="st">`</span>)</span>
+<span id="cb10-4"><a href="workflow-demonstration.html#cb10-4" tabindex="-1"></a>ca <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span><span class="st">`</span><span class="at">citric acid</span><span class="st">`</span>)</span>
+<span id="cb10-5"><a href="workflow-demonstration.html#cb10-5" tabindex="-1"></a>rs <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">residual sugar</span><span class="st">`</span></span>
+<span id="cb10-6"><a href="workflow-demonstration.html#cb10-6" tabindex="-1"></a>ch <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span>chlorides)</span>
+<span id="cb10-7"><a href="workflow-demonstration.html#cb10-7" tabindex="-1"></a>fsd <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">free sulfur dioxide</span><span class="st">`</span></span>
+<span id="cb10-8"><a href="workflow-demonstration.html#cb10-8" tabindex="-1"></a>tsd <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">total sulfur dioxide</span><span class="st">`</span></span>
+<span id="cb10-9"><a href="workflow-demonstration.html#cb10-9" tabindex="-1"></a>den <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span>density)</span>
+<span id="cb10-10"><a href="workflow-demonstration.html#cb10-10" tabindex="-1"></a>ph <span class="ot">&lt;-</span> wine<span class="sc">$</span>pH</span>
+<span id="cb10-11"><a href="workflow-demonstration.html#cb10-11" tabindex="-1"></a>sul <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span>sulphates)</span>
+<span id="cb10-12"><a href="workflow-demonstration.html#cb10-12" tabindex="-1"></a>al <span class="ot">&lt;-</span> wine<span class="sc">$</span>alcohol</span>
+<span id="cb10-13"><a href="workflow-demonstration.html#cb10-13" tabindex="-1"></a>qual <span class="ot">&lt;-</span> wine<span class="sc">$</span>quality</span>
+<span id="cb10-14"><a href="workflow-demonstration.html#cb10-14" tabindex="-1"></a>winez <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(fa, va, ca, rs, ch, fsd, tsd, den, ph, sul, al, qual)</span></code></pre></div>
 <p>To demonstrate how to construct Random Forests models with continuous and discrete outcomes, we also transform the continuous variable, wine quality, our response variable, into two discrete variables. One has two levels: high vs low, and one has three levels: H, M, and L. The thresholds are decided rather arbitrarily, and you can use your domain knowledge to gauge how to set the thresholds.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="workflow-demonstration.html#cb13-1" tabindex="-1"></a><span class="co"># collapse qual into 2 labels</span></span>
-<span id="cb13-2"><a href="workflow-demonstration.html#cb13-2" tabindex="-1"></a>winez<span class="sc">$</span>qual2 <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(winez<span class="sc">$</span>qual <span class="sc">&lt;</span> <span class="dv">6</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;high&quot;</span>))</span>
-<span id="cb13-3"><a href="workflow-demonstration.html#cb13-3" tabindex="-1"></a><span class="co"># collapse qual into 3 labels</span></span>
-<span id="cb13-4"><a href="workflow-demonstration.html#cb13-4" tabindex="-1"></a>winez<span class="sc">$</span>qual3 <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(winez<span class="sc">$</span>qual <span class="sc">&lt;</span> <span class="dv">5</span>, <span class="st">&quot;L&quot;</span>, <span class="fu">ifelse</span>(winez<span class="sc">$</span>qual <span class="sc">&lt;</span> <span class="dv">7</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;H&quot;</span>)))</span>
-<span id="cb13-5"><a href="workflow-demonstration.html#cb13-5" tabindex="-1"></a><span class="fu">table</span>(qual)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="workflow-demonstration.html#cb11-1" tabindex="-1"></a><span class="co"># collapse qual into 2 labels</span></span>
+<span id="cb11-2"><a href="workflow-demonstration.html#cb11-2" tabindex="-1"></a>winez<span class="sc">$</span>qual2 <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(winez<span class="sc">$</span>qual <span class="sc">&lt;</span> <span class="dv">6</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;high&quot;</span>))</span>
+<span id="cb11-3"><a href="workflow-demonstration.html#cb11-3" tabindex="-1"></a><span class="co"># collapse qual into 3 labels</span></span>
+<span id="cb11-4"><a href="workflow-demonstration.html#cb11-4" tabindex="-1"></a>winez<span class="sc">$</span>qual3 <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(winez<span class="sc">$</span>qual <span class="sc">&lt;</span> <span class="dv">5</span>, <span class="st">&quot;L&quot;</span>, <span class="fu">ifelse</span>(winez<span class="sc">$</span>qual <span class="sc">&lt;</span> <span class="dv">7</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;H&quot;</span>)))</span>
+<span id="cb11-5"><a href="workflow-demonstration.html#cb11-5" tabindex="-1"></a><span class="fu">table</span>(qual)</span></code></pre></div>
 <pre><code>## qual
 ##   3   4   5   6   7   8 
 ##  10  53 681 638 199  18</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="workflow-demonstration.html#cb15-1" tabindex="-1"></a><span class="fu">table</span>(winez<span class="sc">$</span>qual2)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="workflow-demonstration.html#cb13-1" tabindex="-1"></a><span class="fu">table</span>(winez<span class="sc">$</span>qual2)</span></code></pre></div>
 <pre><code>## 
 ## high  low 
 ##  855  744</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="workflow-demonstration.html#cb17-1" tabindex="-1"></a><span class="fu">table</span>(winez<span class="sc">$</span>qual3)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="workflow-demonstration.html#cb15-1" tabindex="-1"></a><span class="fu">table</span>(winez<span class="sc">$</span>qual3)</span></code></pre></div>
 <pre><code>## 
 ##    H    L    M 
 ##  217   63 1319</code></pre>
 <p>Next we randomly separate the dataset into a training set (80% of the rows) and a testing set (20% of the rows). A seed is set so that the result can be reproduced.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="workflow-demonstration.html#cb19-1" tabindex="-1"></a><span class="co"># separate data into a training set and a test set </span></span>
-<span id="cb19-2"><a href="workflow-demonstration.html#cb19-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
-<span id="cb19-3"><a href="workflow-demonstration.html#cb19-3" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(winez), <span class="fu">nrow</span>(winez)<span class="sc">*</span>.<span class="dv">8</span>)</span>
-<span id="cb19-4"><a href="workflow-demonstration.html#cb19-4" tabindex="-1"></a>winez_train <span class="ot">&lt;-</span> winez[train,]</span>
-<span id="cb19-5"><a href="workflow-demonstration.html#cb19-5" tabindex="-1"></a>winez_test <span class="ot">&lt;-</span> winez[<span class="sc">-</span>train,]</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="workflow-demonstration.html#cb17-1" tabindex="-1"></a><span class="co"># separate data into a training set and a test set </span></span>
+<span id="cb17-2"><a href="workflow-demonstration.html#cb17-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb17-3"><a href="workflow-demonstration.html#cb17-3" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(winez), <span class="fu">nrow</span>(winez)<span class="sc">*</span>.<span class="dv">8</span>)</span>
+<span id="cb17-4"><a href="workflow-demonstration.html#cb17-4" tabindex="-1"></a>winez_train <span class="ot">&lt;-</span> winez[train,]</span>
+<span id="cb17-5"><a href="workflow-demonstration.html#cb17-5" tabindex="-1"></a>winez_test <span class="ot">&lt;-</span> winez[<span class="sc">-</span>train,]</span></code></pre></div>
 </div>
 <div id="classification-models" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Classification Models<a href="workflow-demonstration.html#classification-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now we construct a Random Forests model with the two-level response. After the model is run, we calculate the predictions using the <code>predict</code> function. A plot for the important predictors are provided. We can see that <code>alcohol</code>, <code>sulphates</code>, and <code>volatile acidity</code> are three most important predictors for the outcome variable. A confusion matrix is created, which shows different metrics such as overall accuracy rate, sensitivity, specificity, etc.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="workflow-demonstration.html#cb20-1" tabindex="-1"></a><span class="co"># random forest</span></span>
-<span id="cb20-2"><a href="workflow-demonstration.html#cb20-2" tabindex="-1"></a>rfGrid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">mtry =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>)</span>
-<span id="cb20-3"><a href="workflow-demonstration.html#cb20-3" tabindex="-1"></a><span class="co"># 2-level variable</span></span>
-<span id="cb20-4"><a href="workflow-demonstration.html#cb20-4" tabindex="-1"></a>rf_tree2 <span class="ot">&lt;-</span> <span class="fu">train</span>(qual2 <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">preProcess =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>), <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>), <span class="at">tuneGrid =</span> rfGrid)</span>
-<span id="cb20-5"><a href="workflow-demonstration.html#cb20-5" tabindex="-1"></a>rf2_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_tree2, <span class="at">newdata =</span> winez_test)</span>
-<span id="cb20-6"><a href="workflow-demonstration.html#cb20-6" tabindex="-1"></a>rfMatrix2 <span class="ot">&lt;-</span> <span class="fu">table</span>(rf2_pred, winez_test<span class="sc">$</span>qual2)</span>
-<span id="cb20-7"><a href="workflow-demonstration.html#cb20-7" tabindex="-1"></a>rf2_test <span class="ot">&lt;-</span> <span class="fu">mean</span>(rf2_pred <span class="sc">==</span> winez_test<span class="sc">$</span>qual2)</span>
-<span id="cb20-8"><a href="workflow-demonstration.html#cb20-8" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">varImp</span>(rf_tree2))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="workflow-demonstration.html#cb18-1" tabindex="-1"></a><span class="co"># random forest</span></span>
+<span id="cb18-2"><a href="workflow-demonstration.html#cb18-2" tabindex="-1"></a>rfGrid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">mtry =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb18-3"><a href="workflow-demonstration.html#cb18-3" tabindex="-1"></a><span class="co"># 2-level variable</span></span>
+<span id="cb18-4"><a href="workflow-demonstration.html#cb18-4" tabindex="-1"></a>rf_tree2 <span class="ot">&lt;-</span> <span class="fu">train</span>(qual2 <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">preProcess =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>), <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>), <span class="at">tuneGrid =</span> rfGrid)</span>
+<span id="cb18-5"><a href="workflow-demonstration.html#cb18-5" tabindex="-1"></a>rf2_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_tree2, <span class="at">newdata =</span> winez_test)</span>
+<span id="cb18-6"><a href="workflow-demonstration.html#cb18-6" tabindex="-1"></a>rfMatrix2 <span class="ot">&lt;-</span> <span class="fu">table</span>(rf2_pred, winez_test<span class="sc">$</span>qual2)</span>
+<span id="cb18-7"><a href="workflow-demonstration.html#cb18-7" tabindex="-1"></a>rf2_test <span class="ot">&lt;-</span> <span class="fu">mean</span>(rf2_pred <span class="sc">==</span> winez_test<span class="sc">$</span>qual2)</span>
+<span id="cb18-8"><a href="workflow-demonstration.html#cb18-8" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">varImp</span>(rf_tree2))</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/rf-1.png" width="672" /></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="workflow-demonstration.html#cb21-1" tabindex="-1"></a><span class="fu">confusionMatrix</span>(rf2_pred, winez_test<span class="sc">$</span>qual2)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="workflow-demonstration.html#cb19-1" tabindex="-1"></a><span class="fu">confusionMatrix</span>(rf2_pred, winez_test<span class="sc">$</span>qual2)</span></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -363,14 +363,14 @@ div.csl-indent {
 ##        &#39;Positive&#39; Class : high            
 ## </code></pre>
 <p>Next we create a model with the three-level outcome variable. Again, important predictors are plotted and a confusion matrix is included below. <code>alcohol</code>, <code>volatile acidity</code>, and <code>sulphates</code> are again the three most important predictors, but the order changed. The overall accuracy is higher here than the two-level model.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="workflow-demonstration.html#cb23-1" tabindex="-1"></a><span class="co"># 3-level variable</span></span>
-<span id="cb23-2"><a href="workflow-demonstration.html#cb23-2" tabindex="-1"></a>rf_tree3 <span class="ot">&lt;-</span> <span class="fu">train</span>(qual3 <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">preProcess =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>), <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>), <span class="at">tuneGrid =</span> rfGrid)</span>
-<span id="cb23-3"><a href="workflow-demonstration.html#cb23-3" tabindex="-1"></a>rf3_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_tree3, <span class="at">newdata =</span> winez_test)</span>
-<span id="cb23-4"><a href="workflow-demonstration.html#cb23-4" tabindex="-1"></a>rfMatrix3 <span class="ot">&lt;-</span> <span class="fu">table</span>(rf3_pred, winez_test<span class="sc">$</span>qual3)</span>
-<span id="cb23-5"><a href="workflow-demonstration.html#cb23-5" tabindex="-1"></a>rf3_test <span class="ot">&lt;-</span> <span class="fu">mean</span>(rf3_pred <span class="sc">==</span> winez_test<span class="sc">$</span>qual3)</span>
-<span id="cb23-6"><a href="workflow-demonstration.html#cb23-6" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">varImp</span>(rf_tree3))</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="workflow-demonstration.html#cb21-1" tabindex="-1"></a><span class="co"># 3-level variable</span></span>
+<span id="cb21-2"><a href="workflow-demonstration.html#cb21-2" tabindex="-1"></a>rf_tree3 <span class="ot">&lt;-</span> <span class="fu">train</span>(qual3 <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">preProcess =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>), <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>), <span class="at">tuneGrid =</span> rfGrid)</span>
+<span id="cb21-3"><a href="workflow-demonstration.html#cb21-3" tabindex="-1"></a>rf3_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_tree3, <span class="at">newdata =</span> winez_test)</span>
+<span id="cb21-4"><a href="workflow-demonstration.html#cb21-4" tabindex="-1"></a>rfMatrix3 <span class="ot">&lt;-</span> <span class="fu">table</span>(rf3_pred, winez_test<span class="sc">$</span>qual3)</span>
+<span id="cb21-5"><a href="workflow-demonstration.html#cb21-5" tabindex="-1"></a>rf3_test <span class="ot">&lt;-</span> <span class="fu">mean</span>(rf3_pred <span class="sc">==</span> winez_test<span class="sc">$</span>qual3)</span>
+<span id="cb21-6"><a href="workflow-demonstration.html#cb21-6" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">varImp</span>(rf_tree3))</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="workflow-demonstration.html#cb24-1" tabindex="-1"></a><span class="fu">confusionMatrix</span>(rf3_pred, winez_test<span class="sc">$</span>qual3)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="workflow-demonstration.html#cb22-1" tabindex="-1"></a><span class="fu">confusionMatrix</span>(rf3_pred, winez_test<span class="sc">$</span>qual3)</span></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -402,10 +402,10 @@ div.csl-indent {
 ## Detection Prevalence  0.09375 0.003125   0.9031
 ## Balanced Accuracy     0.78167 0.498397   0.7339</code></pre>
 <p>The plot below shows how the accuracy rate changes with the number of randomly selected variables in each tree (denoted as <span class="math inline">\(m\)</span>).</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="workflow-demonstration.html#cb26-1" tabindex="-1"></a><span class="co"># random forest plot: accuracy rates vs number of predictors</span></span>
-<span id="cb26-2"><a href="workflow-demonstration.html#cb26-2" tabindex="-1"></a>rfplot1 <span class="ot">&lt;-</span> <span class="fu">plot</span>(rf_tree2)</span>
-<span id="cb26-3"><a href="workflow-demonstration.html#cb26-3" tabindex="-1"></a>rfplot2 <span class="ot">&lt;-</span> <span class="fu">plot</span>(rf_tree3)</span>
-<span id="cb26-4"><a href="workflow-demonstration.html#cb26-4" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(rfplot1, rfplot2, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="workflow-demonstration.html#cb24-1" tabindex="-1"></a><span class="co"># random forest plot: accuracy rates vs number of predictors</span></span>
+<span id="cb24-2"><a href="workflow-demonstration.html#cb24-2" tabindex="-1"></a>rfplot1 <span class="ot">&lt;-</span> <span class="fu">plot</span>(rf_tree2)</span>
+<span id="cb24-3"><a href="workflow-demonstration.html#cb24-3" tabindex="-1"></a>rfplot2 <span class="ot">&lt;-</span> <span class="fu">plot</span>(rf_tree3)</span>
+<span id="cb24-4"><a href="workflow-demonstration.html#cb24-4" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(rfplot1, rfplot2, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:rfplots"></span>
 <img src="bookdown-demo_files/figure-html/rfplots-1.png" alt="Accuracy Rates vs Number of Predictors Used for 2-level Variable (left) and 3-level Variable (right)" width="100%" height="100%" />
 <p class="caption">
@@ -416,11 +416,11 @@ Figure 6.1: Accuracy Rates vs Number of Predictors Used for 2-level Variable (le
 <div id="prediction-models" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Prediction Models<a href="workflow-demonstration.html#prediction-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Next we construct Random Forests models with the continuous outcome variable. We first set <span class="math inline">\(m\)</span> as the square root of the number of predictors, as this is commonly recommended. Confusion matrices cannot be provided for continuous responses, but we can calculate MSEs, find important variables, and show how the error decreases with the number of trees constructed. The three most important variables are again <code>alcohol</code>, <code>sulphates</code>, and <code>volatile acidity</code>.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="workflow-demonstration.html#cb27-1" tabindex="-1"></a><span class="co"># randomforests, mtry = sqrt(11)</span></span>
-<span id="cb27-2"><a href="workflow-demonstration.html#cb27-2" tabindex="-1"></a>rf.def.Wine <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(qual <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-3"><a href="workflow-demonstration.html#cb27-3" tabindex="-1"></a>yhat.rf.Wine <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf.def.Wine, <span class="at">newdata =</span> winez_test)</span>
-<span id="cb27-4"><a href="workflow-demonstration.html#cb27-4" tabindex="-1"></a>rf.mtry3.testMSE <span class="ot">&lt;-</span> <span class="fu">mean</span>((yhat.rf.Wine <span class="sc">-</span> winez_test<span class="sc">$</span>qual)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb27-5"><a href="workflow-demonstration.html#cb27-5" tabindex="-1"></a><span class="fu">varImp</span>(rf.def.Wine)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="workflow-demonstration.html#cb25-1" tabindex="-1"></a><span class="co"># randomforests, mtry = sqrt(11)</span></span>
+<span id="cb25-2"><a href="workflow-demonstration.html#cb25-2" tabindex="-1"></a>rf.def.Wine <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(qual <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb25-3"><a href="workflow-demonstration.html#cb25-3" tabindex="-1"></a>yhat.rf.Wine <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf.def.Wine, <span class="at">newdata =</span> winez_test)</span>
+<span id="cb25-4"><a href="workflow-demonstration.html#cb25-4" tabindex="-1"></a>rf.mtry3.testMSE <span class="ot">&lt;-</span> <span class="fu">mean</span>((yhat.rf.Wine <span class="sc">-</span> winez_test<span class="sc">$</span>qual)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb25-5"><a href="workflow-demonstration.html#cb25-5" tabindex="-1"></a><span class="fu">varImp</span>(rf.def.Wine)</span></code></pre></div>
 <pre><code>##      Overall
 ## fa  22.11429
 ## va  37.04878
@@ -433,14 +433,14 @@ Figure 6.1: Accuracy Rates vs Number of Predictors Used for 2-level Variable (le
 ## ph  22.36903
 ## sul 43.52900
 ## al  54.53284</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="workflow-demonstration.html#cb29-1" tabindex="-1"></a><span class="fu">plot</span>(rf.def.Wine)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="workflow-demonstration.html#cb27-1" tabindex="-1"></a><span class="fu">plot</span>(rf.def.Wine)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>We try several different numbers for the number of variable included in each tree. <code>alcohol</code>, <code>sulphates</code>, and <code>volatile acidity</code> remain the three most important predictors. Two plots are provided to show how the error decreases with the number of trees.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="workflow-demonstration.html#cb30-1" tabindex="-1"></a><span class="co"># mtry = 4</span></span>
-<span id="cb30-2"><a href="workflow-demonstration.html#cb30-2" tabindex="-1"></a>rf.def.Wine.m4 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(qual <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">mtry =</span> <span class="dv">4</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb30-3"><a href="workflow-demonstration.html#cb30-3" tabindex="-1"></a>rf.pred.m4 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf.def.Wine.m4, <span class="at">newdata =</span> winez_test)</span>
-<span id="cb30-4"><a href="workflow-demonstration.html#cb30-4" tabindex="-1"></a>rf.mtry4.testMSE <span class="ot">&lt;-</span> <span class="fu">mean</span>((rf.pred.m4 <span class="sc">-</span> winez_test<span class="sc">$</span>qual)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb30-5"><a href="workflow-demonstration.html#cb30-5" tabindex="-1"></a><span class="fu">varImp</span>(rf.def.Wine.m4)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="workflow-demonstration.html#cb28-1" tabindex="-1"></a><span class="co"># mtry = 4</span></span>
+<span id="cb28-2"><a href="workflow-demonstration.html#cb28-2" tabindex="-1"></a>rf.def.Wine.m4 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(qual <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">mtry =</span> <span class="dv">4</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-3"><a href="workflow-demonstration.html#cb28-3" tabindex="-1"></a>rf.pred.m4 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf.def.Wine.m4, <span class="at">newdata =</span> winez_test)</span>
+<span id="cb28-4"><a href="workflow-demonstration.html#cb28-4" tabindex="-1"></a>rf.mtry4.testMSE <span class="ot">&lt;-</span> <span class="fu">mean</span>((rf.pred.m4 <span class="sc">-</span> winez_test<span class="sc">$</span>qual)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb28-5"><a href="workflow-demonstration.html#cb28-5" tabindex="-1"></a><span class="fu">varImp</span>(rf.def.Wine.m4)</span></code></pre></div>
 <pre><code>##      Overall
 ## fa  22.78226
 ## va  39.40868
@@ -453,11 +453,11 @@ Figure 6.1: Accuracy Rates vs Number of Predictors Used for 2-level Variable (le
 ## ph  20.22223
 ## sul 47.59070
 ## al  60.54909</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="workflow-demonstration.html#cb32-1" tabindex="-1"></a><span class="co"># mtry = 7</span></span>
-<span id="cb32-2"><a href="workflow-demonstration.html#cb32-2" tabindex="-1"></a>rf.def.Wine.m7 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(qual <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">mtry =</span> <span class="dv">7</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb32-3"><a href="workflow-demonstration.html#cb32-3" tabindex="-1"></a>rf.pred.m7 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf.def.Wine.m7, <span class="at">newdata =</span> winez_test)</span>
-<span id="cb32-4"><a href="workflow-demonstration.html#cb32-4" tabindex="-1"></a>rf.mtry7.testMSE <span class="ot">&lt;-</span> <span class="fu">mean</span>((rf.pred.m7 <span class="sc">-</span> winez_test<span class="sc">$</span>qual)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb32-5"><a href="workflow-demonstration.html#cb32-5" tabindex="-1"></a><span class="fu">varImp</span>(rf.def.Wine.m7)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="workflow-demonstration.html#cb30-1" tabindex="-1"></a><span class="co"># mtry = 7</span></span>
+<span id="cb30-2"><a href="workflow-demonstration.html#cb30-2" tabindex="-1"></a>rf.def.Wine.m7 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(qual <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">mtry =</span> <span class="dv">7</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-3"><a href="workflow-demonstration.html#cb30-3" tabindex="-1"></a>rf.pred.m7 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf.def.Wine.m7, <span class="at">newdata =</span> winez_test)</span>
+<span id="cb30-4"><a href="workflow-demonstration.html#cb30-4" tabindex="-1"></a>rf.mtry7.testMSE <span class="ot">&lt;-</span> <span class="fu">mean</span>((rf.pred.m7 <span class="sc">-</span> winez_test<span class="sc">$</span>qual)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb30-5"><a href="workflow-demonstration.html#cb30-5" tabindex="-1"></a><span class="fu">varImp</span>(rf.def.Wine.m7)</span></code></pre></div>
 <pre><code>##      Overall
 ## fa  22.31197
 ## va  43.85162
@@ -470,15 +470,15 @@ Figure 6.1: Accuracy Rates vs Number of Predictors Used for 2-level Variable (le
 ## ph  24.39275
 ## sul 55.85386
 ## al  71.99840</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="workflow-demonstration.html#cb34-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb34-2"><a href="workflow-demonstration.html#cb34-2" tabindex="-1"></a><span class="fu">plot</span>(rf.def.Wine.m4)</span>
-<span id="cb34-3"><a href="workflow-demonstration.html#cb34-3" tabindex="-1"></a><span class="fu">plot</span>(rf.def.Wine.m7)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="workflow-demonstration.html#cb32-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb32-2"><a href="workflow-demonstration.html#cb32-2" tabindex="-1"></a><span class="fu">plot</span>(rf.def.Wine.m4)</span>
+<span id="cb32-3"><a href="workflow-demonstration.html#cb32-3" tabindex="-1"></a><span class="fu">plot</span>(rf.def.Wine.m7)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Lastly, we put the MSEs from these models together. The differences are very small, but the model that uses <span class="math inline">\(m=\sqrt{p}\)</span> has a slightly lower MSE.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="workflow-demonstration.html#cb35-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rf.mtry3.testMSE, rf.mtry4.testMSE, rf.mtry7.testMSE)</span>
-<span id="cb35-2"><a href="workflow-demonstration.html#cb35-2" tabindex="-1"></a><span class="fu">colnames</span>(res) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;squre root of p&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;7&quot;</span>)</span>
-<span id="cb35-3"><a href="workflow-demonstration.html#cb35-3" tabindex="-1"></a><span class="fu">rownames</span>(res) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MSE&quot;</span>)</span>
-<span id="cb35-4"><a href="workflow-demonstration.html#cb35-4" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="workflow-demonstration.html#cb33-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rf.mtry3.testMSE, rf.mtry4.testMSE, rf.mtry7.testMSE)</span>
+<span id="cb33-2"><a href="workflow-demonstration.html#cb33-2" tabindex="-1"></a><span class="fu">colnames</span>(res) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;squre root of p&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;7&quot;</span>)</span>
+<span id="cb33-3"><a href="workflow-demonstration.html#cb33-3" tabindex="-1"></a><span class="fu">rownames</span>(res) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MSE&quot;</span>)</span>
+<span id="cb33-4"><a href="workflow-demonstration.html#cb33-4" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(res)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
