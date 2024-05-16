@@ -1,0 +1,58 @@
+# Data  
+
+When you have data, don't feel so rushed to jump into data analysis yet. Some steps can help you know your data better and, more than often, avoid problems down the road. Here we demonstrate typical steps for exploring data.  
+
+## Data Exploratoary Analysis  
+
+After you read in data, do some checks. Below we use the embedded `mtcars` as an example for illustration.    
+
+```{r, warning = FALSE}
+library(tidyverse)
+data("mtcars")
+str(mtcars)
+```
+
+As seen above, the command `str` allows you to see the variables and their types. For this dataset, all variables are numerical. If some are categorical but they should be numerical, make sure you transform them into the right type of data. (Sometimes numbers are saved as characters, and the analysis would not be correct if the datatype remains as character.) 
+
+Next, try to make some plots--typically histograms for numerical variables and barplots for categorical variables.  
+
+```{r}
+par(mfrow = c(3,3), mar = c(2,2,2,2))
+for (i in 1:ncol(mtcars)){
+  hist(mtcars[,i], main = paste0("Histogram of ", colnames(mtcars)[i]))
+}
+```
+
+You can also look at the paired plots to see if two variables are too perfectly correlated, which could cause problems in regression models.  
+
+```{r}
+pairs(mtcars)
+```
+
+
+Next, take a look at the summary statistics.  
+
+```{r}
+for (i in 1:ncol(mtcars)){
+  print(paste0("***** Summaries of ", colnames(mtcars)[i]," *****"))
+  print(summary(mtcars[,i]))
+}
+```
+
+The summaries can show, for example, ranges and means of the variables. They can give you a better understanding of where the values are and whether there might be data entry errors.  
+
+## Data Requirement  
+
+It is difficult to talk about data requirement in a general sense. A few considerations are offered here. The data should be appropriate to the research questions. For example, if you want to know causal relationships, clinical trial data is the gold standard. Further, make sure that the sample size is large enough for what you want to study. If you would like to know the behavior of mice, repeatedly recording the behavior of one mouse, or even five mice, will not be sufficient. Further, measurement should be consistent. Any major changes in the data collection methods should be taken into consideration. Sometimes adjustment can be made. The best practice is to consider how the data is collected and ensure that there is sufficient information in the data to answer the research questions.  
+
+## Strategies for Missing Data  
+
+### Removing observations  
+
+If you have a large dataset and the percentage of missing data is small, you can simply ignore those observations. Note that you should check whether the pattern of missingness is "missing at random," meaning that the reason why certain observations are missing is pure chance. If, for example, some observations are missing because the pollution level is too high or too low and the detection is not ideal, then ignoring these observations could result in biased conclusions.  
+
+### Imputation  
+
+Imputation is a commonly used method for missing data. If linearity is plausible, you can use linear imputation. If some response variables are missing, some Bayesian method can fill in the values using posterior draws. (In other words, in the process of running the analysis, the algorithm can predict what the response variable should be according to the assumed model and fill it in.) Typically imputation is done multiple times and the mean imputated values are used.   
+
+

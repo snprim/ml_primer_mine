@@ -1,0 +1,47 @@
+# Case Studies    
+
+Since machine learning models are relatively easy to construct, they can at least be used to compare results or explore areas in which not much is known, so hypotheses can be made to help guide the directions of process-based models. Here we provide overviews of three case studies to demonstrate how ML models can benefit environmental and natural resource management studies.    
+
+## Case Study 1: Machine learning approach for modeling daily pluvial flood dynamics in agricultural landscapes  
+
+### Takeaway  
+
+With the remote sensed images as important data sources, the researchers had to do a lot of pre-processing. While pre-processing images might seem time consuming, once the workflow is established, studying flood in other areas becomes easier, as long as images are available. This is one of the strengths of ML models--the process can be at least partially automated, and data is more easily obtained than if measuring at each site is required.  
+
+### Summary  
+
+In this study, @fidan2023 built a Random Forests model using gridded rainfall data, derived from remotely sensed imagery, from the 2016 hurricane Matthew's impact in Kinston, North Carolina. Besides the proprietary images, the researchers also included readily available geospatial landscape traits for the models. With the objectives of (1) developing a pluvial flood dataset using imagery, (2) testing the performance of Random Forests models for the modeling flood in "low-lying and flat agricultural terrain," (3) finding important predictors, and (4) "generat[ing] pluvial flood time series."  
+
+The outcome variable was binary in terms of flooding. Each pixel was treated as one data point. Non-flooded areas were covered by 5,875,480 pixels, and flooded areas by 678,010 pixels. Since there were many more non-flooded pixels than flooded pixels, overall accuracy alone would not be a good performance metric, since, if the model always predicted that a pixel was not flooded, the accuracy rate would be high. The researchers chose other metrics such as precision, recall, specificity, and F1 scores to reflect model performance in different scenarios. The model achieved an overall accuracy of 0.97 and an F1 score of 0.69. Considering that the no information rate (if the model predicts non-flooded all the time) was around 88.5%, this performance seemed satisfactory. They found the important variables to be population density, distance to the nearest river, height above nearest drainage, and distance to the nearest road.    
+
+The full paper can be accessed [here](https://www.sciencedirect.com/science/article/pii/S1364815223001445?dgcid=author). 
+
+## Case Study 2: Short-term forecasting of fecal coliforms in shellfish growing waters  
+
+### Takeaway  
+
+This study serves as a nice case study because (1) it demonstrates that Random Forests does well with nonlinear relationships between the predictors and outcomes, (2) the performance is at least as good as other studies, (3) the findings are consistent with what researchers have known. These reasons help us establish trust in Random Forests models. Furthermore, Random Forests models are easy and cheap to construct. The R package `caret` and function `rf`, used by @chazal2024, is easy to use and quick to run, if the number of trees are reasonably chosen. The important variables, readily provided by `caret::rf`, help greatly with interpretation.  
+
+### Summary  
+
+This study's goal was to predict near-term (1-3 days) fecal contamination in coastal shellfish growing waters. For each of the five management areas, @chazal2024 constructed five Random Forests models to (1) use watershed characteristics as well as antecedent hydrologic and meteorologic observations to predict the level of fecal coliform (FC), (2) test whether forecasted rainfall can be useful for predictions, and (3) find important variables. Let's focus on goals (1) and (3) for this case study.  
+
+For their first goal, depending on the management areas, the $R^2$ value was between 0.40 and 0.74. According to @chazal2024, this performance is similar to that of previous studies. The other settings were typical of ML studies. They split the data into 80% training and 20% testing and used the variance inflation factor (VIF) to remove variables that are collinear, which means some variables are correlated with each other. For their third goal, they found (1) antecedent rainfall, (2) river stage threshold, and (3) wind to be high on the importance for prediction. These findings are consistent with the current understanding. In short, this study demonstrates the reliability and ease for construction and interpretation of Random Forests models.  
+
+The full paper can be accessed [here](https://www.sciencedirect.com/science/article/pii/S0025326X24000304?via%3Dihub).  
+
+## Case Study 3: In-season Sweetpotato Yield Forecasting using Multitemporal Remote Sensing Environmental Observations and Machine Learning  
+
+### Takeaway  
+
+Although its results are considered moderate, this study demonstrates how ML models can be used to help with decision making and planning. As @carbajal-carrasco2024 state, "Even though ML models are unable to explain underlying processes, they can surpass the predictive accuracy of process-based models, making ML algorithms particularly useful for yield forecasting at scales that are often computationally prohibitive for process-based models." Using remote sensing data and considering a multitude of predictor sets, this study tested how to find the best combination of predictors, the best aggregation periods, and the optimal timing of constructing models. They found that the end of the mid-season was an optimal time for constructing models, leaving four to eight weeks for planning. One can assume that with further examination and inclusion of other predictors, some models can give reliable forecasting in advance. Such models are highly applicable in other fields to help with policy making, process planning, and even disaster preparedness.
+
+### Summary  
+
+Using stationary and temporal predictors from multi-temporal remote sensing data to make early yield forecasting, @carbajal-carrasco2024 used four ML methods--Random Forest Regression (RFR), Artificial Neural Networks (ANN), Support Vector Machine (SVM), and Extreme Gradient Boosting (XGB)--to construct sweetpotato yield models at the county level in and around the Coastal Plain in North Carolina from 2008 to 2022. Besides the primary goal to predict yield, the authors also aimed to (1) identify key predictors through variable selection, (2) implement the four ML methods, (3) determine the optimal aggregation periods for temporal variables, and (4) evaluate how early in the season the models can reliably predict end-of-season yields. The predictors considered included topography and soil traits (elevation, slope, aspect, sand, clay, pH, cation exchange capacity, bulk density, nitrogen, soil organic carbon), weather (maximum and minimum temperature around planting, precipitation) and vegetation greenness (NDVI). They considered 16- and 32-days as the time frames to aggregate data as well as comparing model performance of early, mid, and late models. They used the Boruta method for variable selection.
+
+The authors chose the Random Forest Regression algorithm with 16-day composite predictors using early- to mid-growing season as the best model. The $R^2$ value is $0.44$ and RMSE (root mean squared error) as $3.53 t.ha^{-1}$. The authors describe the two above metrics as acceptable for forecasting. Elevation was found to be the most important predictor. They also conclude that the best time to run the model was before the end of the mid-season, approximately four to eight weeks before harvest. The authors cite the small sample size (95 records from 17 counties) as a major limitation and propose other predictors (e.g. solar-induced chlorophyll fluorescence) and ML models (e.g. Deep Learning) that could improve the performance. 
+
+The full paper can be accessed [here](https://essopenarchive.org/users/716273/articles/870897-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning).  
+
+

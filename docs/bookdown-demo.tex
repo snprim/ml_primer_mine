@@ -1,0 +1,933 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Machine Learning Guidelines for Natural Resource Management Practitioners},
+  pdfauthor={Shih-Ni Prim and Natalie Nelson},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Machine Learning Guidelines for Natural Resource Management Practitioners}
+\author{Shih-Ni Prim and Natalie Nelson}
+\date{2024-05-16}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{motivation}{%
+\chapter{Motivation}\label{motivation}}
+
+As machine learning (ML) is becoming ever more powerful, some has noted that ML has not been widely used in environmental studies. Process based models might be preferred, but they can be costly and ML provides a wide variety of tools that should be explored. This booklet is meant to provide a concise guide for natural resource management practitioners. This book serves as a staring point rather than a comprehensive resource, so that practitioners can have a basic understanding of how ML works and how to utilize it to analyze data and answer research questions. We also provide case studies, R code, and links to online resources to help the readers on the journey of gaining one powerful tool that is becoming omnipresent in the research world.
+
+\hypertarget{intro}{%
+\chapter{Introduction}\label{intro}}
+
+What is machine learning (ML)? Essentially, machine learning teaches computer models to look for patterns or make predictions. You can think of machine learning models as finding underlying formulas from which the data come. To solve for such formulas, many, many mathematical calculations are involved. As we human beings are prone to mistakes for repetitive task, a more effective way to work with data is to identify a framework and give the framework and data to a computer model. The computer is best at repeating meticulous calculations to find a best guess based on our believes of the system and the data we observed.
+
+Even though ML models are commonly considered black boxes (or some might say opaque boxes), they are not necessarily so. Many ML methods lend easily to interpretation. Random Forests, for example, is a powerful method that provides important variables, even if a straightforward explanation that can come from a linear model is unavailable. Below we introduce the two main branches of machine learning.
+
+\hypertarget{supervised-learning}{%
+\section{Supervised Learning}\label{supervised-learning}}
+
+Simply put, supervised learning is when there are true answers for the model. For example, if we want to use environmental traits (temperature, precipitation, chemical composition) to predict algal bloom. In a dataset that records such activities, the observed growths are the ``true'' answers. The model can then use the predictors to make predictions, and the comparison between the predictions and the observations/truth can measure how well the model performs.
+
+\hypertarget{unsupervised-learning}{%
+\section{Unsupervised Learning}\label{unsupervised-learning}}
+
+Unsupervised learning, on the other hand, performs tasks that do not have correct/true answers. For example, for a group of chemicals, some might have more similar traits than the others. Unsupervised learning can perform clustering to find such groupings. This task is considered unsupervised, because the groupings might depend on the context. One could imagine that clustering can be performed first, and the groupings are used as the predictors instead of the individual chemicals. This way the dimension can be reduced, assuming that the number of groups is smaller than the number of chemicals.
+
+\hypertarget{online-resources}{%
+\section{Online Resources}\label{online-resources}}
+
+If you feel overwhelmed about the differences in ML models, you are not alone! The sheer number of ML models attests to the power and versatility of machine learning. Search \emph{machine learning models cheat sheet} and you will find some concise resources out there. Here are two that provide useful information.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://blogs.sas.com/content/subconsciousmusings/2020/12/09/machine-learning-algorithm-use/}{Which machine learning algorithm should I use} by SAS blogs.
+\item
+  \href{https://www.datacamp.com/cheat-sheet/machine-learning-cheat-sheet?utm_source=google\&utm_medium=paid_search\&utm_campaignid=19589720830\&utm_adgroupid=157098107695\&utm_device=c\&utm_keyword=\&utm_matchtype=\&utm_network=g\&utm_adpostion=\&utm_creative=698229375346\&utm_targetid=dsa-2264919291829\&utm_loc_interest_ms=\&utm_loc_physical_ms=9009732\&utm_content=DSA~blog~Julia\&utm_campaign=230119_1-sea~dsa~tofu_2-b2c_3-us_4-prc_5-na_6-na_7-le_8-pdsh-go_9-na_10-na_11-na-may24\&gad_source=1\&gclid=Cj0KCQjw6PGxBhCVARIsAIumnWai3I4X4UtrhM_2dA1pUpmAmC-iErsp57Cv6p4fEQugIVbGrx1VT2YaAsr7EALw_wcB}{Machine Learning Cheat Sheet} by Datacamp.
+\end{itemize}
+
+\hypertarget{further-reading}{%
+\section{Further Reading}\label{further-reading}}
+
+If you would like to learn more, the book \emph{An Introduction to Statistical Learning} by \citet{james2013introduction} is a great resource! This book provides a wealth of information about machine learning models; further, the authors assume that the readers are mainly interested in applying, rather than studying, ML models. The four premises offered by the authors, listed on pp 8-9 of the version about R, demonstrate the practical focus of the book:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Many statistical learning methods are relevant and useful in a wide range of academic and non-academic disciplines, beyond just the statistical sciences.
+\item
+  Statistical learning should not be viewed as a series of black boxes.
+\item
+  While it is important to know what job is performed by each cog, it is not necessary to have the skills to construct the machine inside the box!
+\item
+  We presume that the reader is interested in applying statistical learning methods to real-world problems.
+\end{enumerate}
+
+There are free PDF versions with applications in R and Python \href{https://www.statlearning.com/}{here}. Be sure to check it out if you are interested in learning more about machine learning models!
+
+\hypertarget{data}{%
+\chapter{Data}\label{data}}
+
+When you have data, don't feel so rushed to jump into data analysis yet. Some steps can help you know your data better and, more than often, avoid problems down the road. Here we demonstrate typical steps for exploring data.
+
+\hypertarget{data-exploratoary-analysis}{%
+\section{Data Exploratoary Analysis}\label{data-exploratoary-analysis}}
+
+After you read in data, do some checks. Below we use the embedded \texttt{mtcars} as an example for illustration.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   3.4.4     v tibble    3.2.1
+## v lubridate 1.9.3     v tidyr     1.3.0
+## v purrr     1.0.2     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(}\StringTok{"mtcars"}\NormalTok{)}
+\FunctionTok{str}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    32 obs. of  11 variables:
+##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+##  $ disp: num  160 160 108 258 360 ...
+##  $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+##  $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+##  $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+##  $ qsec: num  16.5 17 18.6 19.4 17 ...
+##  $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...
+\end{verbatim}
+
+As seen above, the command \texttt{str} allows you to see the variables and their types. For this dataset, all variables are numerical. If some are categorical but they should be numerical, make sure you transform them into the right type of data. (Sometimes numbers are saved as characters, and the analysis would not be correct if the datatype remains as character.)
+
+Next, try to make some plots--typically histograms for numerical variables and barplots for categorical variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{), }\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(mtcars))\{}
+  \FunctionTok{hist}\NormalTok{(mtcars[,i], }\AttributeTok{main =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"Histogram of "}\NormalTok{, }\FunctionTok{colnames}\NormalTok{(mtcars)[i]))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-4-1.pdf} \includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-4-2.pdf}
+
+You can also look at the paired plots to see if two variables are too perfectly correlated, which could cause problems in regression models.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pairs}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+Next, take a look at the summary statistics.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(mtcars))\{}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(}\StringTok{"***** Summaries of "}\NormalTok{, }\FunctionTok{colnames}\NormalTok{(mtcars)[i],}\StringTok{" *****"}\NormalTok{))}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{summary}\NormalTok{(mtcars[,i]))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "***** Summaries of mpg *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   10.40   15.43   19.20   20.09   22.80   33.90 
+## [1] "***** Summaries of cyl *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   4.000   4.000   6.000   6.188   8.000   8.000 
+## [1] "***** Summaries of disp *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    71.1   120.8   196.3   230.7   326.0   472.0 
+## [1] "***** Summaries of hp *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    52.0    96.5   123.0   146.7   180.0   335.0 
+## [1] "***** Summaries of drat *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   2.760   3.080   3.695   3.597   3.920   4.930 
+## [1] "***** Summaries of wt *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.513   2.581   3.325   3.217   3.610   5.424 
+## [1] "***** Summaries of qsec *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   14.50   16.89   17.71   17.85   18.90   22.90 
+## [1] "***** Summaries of vs *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.0000  0.4375  1.0000  1.0000 
+## [1] "***** Summaries of am *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.0000  0.4062  1.0000  1.0000 
+## [1] "***** Summaries of gear *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   3.000   3.000   4.000   3.688   4.000   5.000 
+## [1] "***** Summaries of carb *****"
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   2.000   2.000   2.812   4.000   8.000
+\end{verbatim}
+
+The summaries can show, for example, ranges and means of the variables. They can give you a better understanding of where the values are and whether there might be data entry errors.
+
+\hypertarget{data-requirement}{%
+\section{Data Requirement}\label{data-requirement}}
+
+It is difficult to talk about data requirement in a general sense. A few considerations are offered here. The data should be appropriate to the research questions. For example, if you want to know causal relationships, clinical trial data is the gold standard. Further, make sure that the sample size is large enough for what you want to study. If you would like to know the behavior of mice, repeatedly recording the behavior of one mouse, or even five mice, will not be sufficient. Further, measurement should be consistent. Any major changes in the data collection methods should be taken into consideration. Sometimes adjustment can be made. The best practice is to consider how the data is collected and ensure that there is sufficient information in the data to answer the research questions.
+
+\hypertarget{strategies-for-missing-data}{%
+\section{Strategies for Missing Data}\label{strategies-for-missing-data}}
+
+\hypertarget{removing-observations}{%
+\subsection{Removing observations}\label{removing-observations}}
+
+If you have a large dataset and the percentage of missing data is small, you can simply ignore those observations. Note that you should check whether the pattern of missingness is ``missing at random,'' meaning that the reason why certain observations are missing is pure chance. If, for example, some observations are missing because the pollution level is too high or too low and the detection is not ideal, then ignoring these observations could result in biased conclusions.
+
+\hypertarget{imputation}{%
+\subsection{Imputation}\label{imputation}}
+
+Imputation is a commonly used method for missing data. If linearity is plausible, you can use linear imputation. If some response variables are missing, some Bayesian method can fill in the values using posterior draws. (In other words, in the process of running the analysis, the algorithm can predict what the response variable should be according to the assumed model and fill it in.) Typically imputation is done multiple times and the mean imputated values are used.
+
+\hypertarget{evaluation}{%
+\chapter{Evaluation}\label{evaluation}}
+
+\hypertarget{training-vs-testing}{%
+\section{Training vs Testing}\label{training-vs-testing}}
+
+We should first address the concepts of training and testing. Instead of using the entire data, it is common to split the dataset into a training set and a testing set. Typically people use percentages such as 70\% vs 30\% or 80\% vs 20\%. The idea is to use only, say, 80\% of the data for training, which means to run the select model on this part of data. Then you have a model with some coefficients (you can think of them as slopes) and test such results on the testing set to see how well the model performs. Since the part of the data for testing is not used in training, there is no double dipping. Sometimes people split the dataset into three sets: training, testing, and validation. So the trained models are used on the testing set for model selection. Then the validation set is used only once at the end to gauge how the model should perform if there's new data.
+
+\hypertarget{metrics}{%
+\section{Metrics}\label{metrics}}
+
+\hypertarget{numerical-responses}{%
+\subsection{Numerical Responses}\label{numerical-responses}}
+
+The most common metrics for numerical responses include mean squared errors (MSE), bias, and \(R^2\) (or adjusted \(R^2\)). The way to calculate MSE is:
+\[MSE = \frac{1}{n} \sum_{i=1}^n \bigg( \hat{y}_i - y_i \bigg)^2,\]
+where \(\hat{y}_i\) is the predicted outcome of the \(i^{th}\) observation and \(y_i\) is the \(i^{th}\) observed outcome. The metric shows, on average, the squared distance between predictions and true responses. Bias is calculated as
+\[Bias = \frac{1}{n} \sum_{i=1}^n \bigg( \hat{y}_i - y \bigg).\]
+The two metrics seem similar, but they reveal different aspects of model performance. In general, bias shows if the predictions are centered around the truth, while the MSE shows whether the predictions are centered around the truth \emph{and} how far the predictions are from the truth. If the bias is zero, it means that the mean prediction goes towards the truth as the sample size increases to infinity. This is naturally a desired property, but you might be surprised that sometimes we are willing to accept some bias to reduce the variance.
+
+One important formula is
+\[MSE = Bias^2 + Variance,\]
+where
+\[Variance = \frac{1}{n} \sum_{i=1}^n \bigg( \hat{y}_i - E(\hat{y}) \bigg)^2\]
+and
+\[E(\hat{y}) = \frac{1}{n} \sum_{i=1}^n \hat{y}_i.\]
+We skip the derivation here, but the interested readers can find the derivation readily online. The formula tells us that, if the MSE is large but the bias is small, this means the model has a large variance. This is to say, if you fit the model multiple times, it has quite different results. These formulas might seem too technical, but the message is important. There is a trade-off between bias and variance; in other words, there is no free lunch. A balance between bias and variance is where many methods strive to achieve.
+
+\hypertarget{categorical-responses}{%
+\subsection{Categorical Responses}\label{categorical-responses}}
+
+When the responses are categorical, a common way to measure the performance is a confusion matrix, which shows the numbers of predictions that are correct or incorrect. See some examples in \protect\hyperlink{workflow-demonstration}{Workflow Demonstration}. Other metrics include sensitivity, specificity, precision, recall, and other metrics that try to combine these metrics to present a one-number summary.
+
+\hypertarget{overfitting}{%
+\section{Overfitting}\label{overfitting}}
+
+Overfitting means that the model can make good predictions with the available data, but it cannot generalize well on new data. It is like if a student memorizes all the past exam questions without really studying the materials, then, on the exam, the student can do really well on questions coming from past exams but might do poorly on questions never seen before. Splitting data into training and testing is one strategy to avoid overfitting. Certain ML methods are less likely to overfit, such as neural networks. And there are some more strategies, such as early stopping, that can be used. Our point here is to be aware of this potential pitfall of machine learning methods.
+
+\hypertarget{cross-validation}{%
+\section{Cross Validation}\label{cross-validation}}
+
+One very standard way of evaluation is \(k\)-fold cross validation, commonly with \(k=5\) or \(k=10\). The idea is simple. Divide the data into \(k\) groups. Each time, choose \(k-1\) groups for training, fit the model on the last group, which is the test data, and calculate the desired metrics, such as MSE.
+
+This way, although less data is used for training, the metrics should be more accurate, because now we are not using the same data points for training and testing. Using metrics from cross validation for model selection can ensure that your model does not overfit.
+
+\begin{figure}
+\centering
+\includegraphics{images/K-fold_cross_validation_EN.pdf}
+\caption{\label{fig:unnamed-chunk-8}Image Source: \url{https://en.wikipedia.org/wiki/Cross-validation_(statistics)}}
+\end{figure}
+
+\hypertarget{machine-learning-methods}{%
+\chapter{Machine Learning Methods}\label{machine-learning-methods}}
+
+Here we discuss some machine learning methods you might find useful. Although linear regression models are commonly used, we skip it because it is well understood and many online resources can be easily located.
+
+\hypertarget{tree-based-methods}{%
+\section{Tree-based Methods}\label{tree-based-methods}}
+
+Tree-based methods are popular for their ease for interpretation. Essentially, the algorithm tries to split the data into subsets by finding the most significant (or consequential) variables in a way that reduces the prediction error the most. For example, in the graph below, the variable that helps reduce prediction error at the first level is gender. In other words, the property of being male or female can greatly help the algorithm predict the survival of passengers on Titanic.
+
+\begin{figure}
+\centering
+\includegraphics{images/Decision_Tree.jpg}
+\caption{By Gilgoldm - Own work, CC BY-SA 4.0, \url{https://commons.wikimedia.org/w/index.php?curid=90405437}}
+\end{figure}
+
+Decision trees are easy to use but not very accurate for complex data; however, we can go beyond one tree. If we use multiple trees and, for instance, take the average of the predictions of all the trees, we can improve the performance. This is the idea of ensemble methods. One of the ensemble methods, Random Forests, is commonly used, including in natural resources management, and quite accurate for many kinds of data. So next we'll dive into this one method.
+
+\hypertarget{random-forests}{%
+\subsection{Random Forests}\label{random-forests}}
+
+For Random Forests, the algorithm randomly selects a smaller number, say \(m\), of predictors from the total number, say \(p\), each time a tree is being fit. This process is repeated many times, for example, \(500\) times. The average (for continuous responses) or the majority votes (for discrete responses) of the predictions from the individual trees are used as final predictions. By randomly choosing a subset of predictors each time, Random Forests can avoid relying on the same variables every time and prevent overfitting.
+
+Even though coefficients of each predictors are not available for random forests, you can easily get the important variables and at least know which variables are more important for predicting the response. You can also use Random Forests as a tool for variable selection and then use a different method to fit the model on a subset of predictors chosen by Random Forests.
+
+See \protect\hyperlink{workflow-demonstration}{Workflow Demonstration} for examples of Random Forests models.
+
+\hypertarget{other-ensemble-tree-methods}{%
+\subsection{Other Ensemble Tree Methods}\label{other-ensemble-tree-methods}}
+
+Other ensemble tree methods include boosting and bagging. If you are interested, take a look at Chapter 8 (Tree-Based Methods) of \emph{An Introduction to Statistical Learning} by \citet{james2013introduction}.
+
+\hypertarget{neural-network}{%
+\section{Neural Network}\label{neural-network}}
+
+Neural network has been enjoying its popularity. A neural network model is composed of an input layer, some hidden layers, and an output layer, as seen below. There is only one hidden layer below. When there are enough hidden layers, the model is then called deep learning.
+
+\begin{figure}
+\centering
+\includegraphics{images/Colored_neural_network.svg.png}
+\caption{By Glosser.ca - Own work, Derivative of File: Artificial neural network.svg, CC BY-SA 3.0, \url{https://commons.wikimedia.org/w/index.php?curid=24913461}}
+\end{figure}
+
+So the input layer is the observed predictors, and each of the hidden layers has nodes that contain coefficients. You can think of these coefficients similar to those for linear models, except they do not have linear relationships with the observed predictors. These values are derived as the best fit between data and some kind of cost function; essentially, these values are meant to minimize the differences between observed outcome and predictions. When the values from one hidden layer are passed onto the next layer, a nonlinear activation function called \href{https://en.wikipedia.org/wiki/Rectifier_(neural_networks)}{ReLU} is commonly used. If the task is classification, the layer right before output is often an algorithm to turn the values into predicted class. While neural network is a powerful ML model, the values in the nodes in the hidden layers are not interpretable. So this indeed is a black-box method. For interested readers, check out Chapter 10 Deep Learning in \citet{james2013introduction} (\emph{An Introduction to Statistical Learning}).
+
+\hypertarget{gaussian-process-gp}{%
+\section{Gaussian Process (GP)}\label{gaussian-process-gp}}
+
+Another ML method that could be useful for natural resource management type of research is Gaussian Process. This method, commonly called kriging in spatial statistics, is non-parametric, which sounds like there are no parameters in the model but in fact means there can be an infinite number of parameters. (Of course in any real model we'll have finite parameters, but that's the idea.) The fact that the parameters can increase towards infinity tells us that this is a flexible model. Essentially, for a GP model, and here I quote from Chapter 5 of Gramacy's \emph{Surrogates}, ``any finite collection of realizations (i.e.~\(n\) observations) is modeled as having a multivariate normal (MVN) distribution.'' In other words, the model tries to learn information from similar items, judging from some kind of distance from each other. MVN has some great properties. And, when there is a new data point, all the observed data points can be used to make prediction for it.
+
+GP is widely used in the machine learning, computer experiments, and spatial statistics communities. There are ready-made R packages, such as \texttt{GpGp} and \texttt{deepgp}. It's also easy to use in Python. Chapter 5 (\href{https://bookdown.org/rbg/surrogates/chap5.html}{``Gaussian Process Regression''}) of the book \emph{Surrogates} by \citet{gramacy2020surrogates} is a great resource if you are interested in learning more about Gaussian process! If you would like to see some theory of GP, check out another classic book \href{https://gaussianprocess.org/gpml/}{\emph{Gaussian Processes for Machine learning}} by \citet{CR2006gp}.
+
+\hypertarget{workflow-demonstration}{%
+\chapter{Workflow Demonstration}\label{workflow-demonstration}}
+
+In this section, we use a dataset to exemplify a typical workflow for constructing ML models. We skip exploratory data analysis, since we have already addressed that aspect in \protect\hyperlink{data}{Data}. The dataset contains wine quality and traits, and our goal is to predict the quality of wine using the traits. The dataset can be found \href{https://www.kaggle.com/datasets/yasserh/wine-quality-dataset}{here}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{echo =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{eval =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{cache =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(tree)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(caret)}
+\FunctionTok{library}\NormalTok{(rattle)}
+\FunctionTok{library}\NormalTok{(randomForest)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{prepare-data}{%
+\section{Prepare Data}\label{prepare-data}}
+
+We first read in the data and rename the variables, so coding is easier.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wine }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}\StringTok{"materials/winequality{-}red.csv"}\NormalTok{, }\AttributeTok{delim =} \StringTok{\textquotesingle{};\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 1599 Columns: 12
+## -- Column specification --------------------------------------------------------
+## Delimiter: ";"
+## dbl (12): fixed acidity, volatile acidity, citric acid, residual sugar, chlo...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# shorten variable names}
+\NormalTok{fa }\OtherTok{\textless{}{-}}\NormalTok{ wine}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{fixed acidity}\StringTok{\textasciigrave{}}
+\NormalTok{va }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(wine}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{volatile acidity}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{ca }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(wine}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{citric acid}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{rs }\OtherTok{\textless{}{-}}\NormalTok{ wine}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{residual sugar}\StringTok{\textasciigrave{}}
+\NormalTok{ch }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(wine}\SpecialCharTok{$}\NormalTok{chlorides)}
+\NormalTok{fsd }\OtherTok{\textless{}{-}}\NormalTok{ wine}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{free sulfur dioxide}\StringTok{\textasciigrave{}}
+\NormalTok{tsd }\OtherTok{\textless{}{-}}\NormalTok{ wine}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{total sulfur dioxide}\StringTok{\textasciigrave{}}
+\NormalTok{den }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(wine}\SpecialCharTok{$}\NormalTok{density)}
+\NormalTok{ph }\OtherTok{\textless{}{-}}\NormalTok{ wine}\SpecialCharTok{$}\NormalTok{pH}
+\NormalTok{sul }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(wine}\SpecialCharTok{$}\NormalTok{sulphates)}
+\NormalTok{al }\OtherTok{\textless{}{-}}\NormalTok{ wine}\SpecialCharTok{$}\NormalTok{alcohol}
+\NormalTok{qual }\OtherTok{\textless{}{-}}\NormalTok{ wine}\SpecialCharTok{$}\NormalTok{quality}
+\NormalTok{winez }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(fa, va, ca, rs, ch, fsd, tsd, den, ph, sul, al, qual)}
+\end{Highlighting}
+\end{Shaded}
+
+To demonstrate how to construct Random Forests models with continuous and discrete outcomes, we also transform the continuous variable, wine quality, our response variable, into two discrete variables. One has two levels: high vs low, and one has three levels: H, M, and L. The thresholds are decided rather arbitrarily, and you can use your domain knowledge to gauge how to set the thresholds.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# collapse qual into 2 labels}
+\NormalTok{winez}\SpecialCharTok{$}\NormalTok{qual2 }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(winez}\SpecialCharTok{$}\NormalTok{qual }\SpecialCharTok{\textless{}} \DecValTok{6}\NormalTok{, }\StringTok{"low"}\NormalTok{, }\StringTok{"high"}\NormalTok{))}
+\CommentTok{\# collapse qual into 3 labels}
+\NormalTok{winez}\SpecialCharTok{$}\NormalTok{qual3 }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(winez}\SpecialCharTok{$}\NormalTok{qual }\SpecialCharTok{\textless{}} \DecValTok{5}\NormalTok{, }\StringTok{"L"}\NormalTok{, }\FunctionTok{ifelse}\NormalTok{(winez}\SpecialCharTok{$}\NormalTok{qual }\SpecialCharTok{\textless{}} \DecValTok{7}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"H"}\NormalTok{)))}
+\FunctionTok{table}\NormalTok{(qual)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## qual
+##   3   4   5   6   7   8 
+##  10  53 681 638 199  18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(winez}\SpecialCharTok{$}\NormalTok{qual2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## high  low 
+##  855  744
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(winez}\SpecialCharTok{$}\NormalTok{qual3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##    H    L    M 
+##  217   63 1319
+\end{verbatim}
+
+Next we randomly separate the dataset into a training set (80\% of the rows) and a testing set (20\% of the rows). A seed is set so that the result can be reproduced.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# separate data into a training set and a test set }
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\NormalTok{train }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(winez), }\FunctionTok{nrow}\NormalTok{(winez)}\SpecialCharTok{*}\NormalTok{.}\DecValTok{8}\NormalTok{)}
+\NormalTok{winez\_train }\OtherTok{\textless{}{-}}\NormalTok{ winez[train,]}
+\NormalTok{winez\_test }\OtherTok{\textless{}{-}}\NormalTok{ winez[}\SpecialCharTok{{-}}\NormalTok{train,]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{classification-models}{%
+\section{Classification Models}\label{classification-models}}
+
+Now we construct a Random Forests model with the two-level response. After the model is run, we calculate the predictions using the \texttt{predict} function. A plot for the important predictors are provided. We can see that \texttt{alcohol}, \texttt{sulphates}, and \texttt{volatile\ acidity} are three most important predictors for the outcome variable. A confusion matrix is created, which shows different metrics such as overall accuracy rate, sensitivity, specificity, etc.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# random forest}
+\NormalTok{rfGrid }\OtherTok{\textless{}{-}} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{mtry =} \DecValTok{2}\SpecialCharTok{:}\DecValTok{8}\NormalTok{)}
+\CommentTok{\# 2{-}level variable}
+\NormalTok{rf\_tree2 }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(qual2 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ fa }\SpecialCharTok{+}\NormalTok{ va }\SpecialCharTok{+}\NormalTok{ ca }\SpecialCharTok{+}\NormalTok{ rs }\SpecialCharTok{+}\NormalTok{ ch }\SpecialCharTok{+}\NormalTok{ fsd }\SpecialCharTok{+}\NormalTok{ tsd }\SpecialCharTok{+}\NormalTok{ den }\SpecialCharTok{+}\NormalTok{ ph }\SpecialCharTok{+}\NormalTok{ sul }\SpecialCharTok{+}\NormalTok{ al, }\AttributeTok{data =}\NormalTok{ winez\_train, }\AttributeTok{method =} \StringTok{"rf"}\NormalTok{, }\AttributeTok{preProcess =} \FunctionTok{c}\NormalTok{(}\StringTok{"center"}\NormalTok{, }\StringTok{"scale"}\NormalTok{), }\AttributeTok{trControl =} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"cv"}\NormalTok{, }\AttributeTok{number =} \DecValTok{10}\NormalTok{), }\AttributeTok{tuneGrid =}\NormalTok{ rfGrid)}
+\NormalTok{rf2\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rf\_tree2, }\AttributeTok{newdata =}\NormalTok{ winez\_test)}
+\NormalTok{rfMatrix2 }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(rf2\_pred, winez\_test}\SpecialCharTok{$}\NormalTok{qual2)}
+\NormalTok{rf2\_test }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(rf2\_pred }\SpecialCharTok{==}\NormalTok{ winez\_test}\SpecialCharTok{$}\NormalTok{qual2)}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{varImp}\NormalTok{(rf\_tree2))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/rf-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confusionMatrix}\NormalTok{(rf2\_pred, winez\_test}\SpecialCharTok{$}\NormalTok{qual2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction high low
+##       high  138  25
+##       low    45 112
+##                                           
+##                Accuracy : 0.7812          
+##                  95% CI : (0.7319, 0.8253)
+##     No Information Rate : 0.5719          
+##     P-Value [Acc > NIR] : 2.968e-15       
+##                                           
+##                   Kappa : 0.5613          
+##                                           
+##  Mcnemar's Test P-Value : 0.02315         
+##                                           
+##             Sensitivity : 0.7541          
+##             Specificity : 0.8175          
+##          Pos Pred Value : 0.8466          
+##          Neg Pred Value : 0.7134          
+##              Prevalence : 0.5719          
+##          Detection Rate : 0.4313          
+##    Detection Prevalence : 0.5094          
+##       Balanced Accuracy : 0.7858          
+##                                           
+##        'Positive' Class : high            
+## 
+\end{verbatim}
+
+Next we create a model with the three-level outcome variable. Again, important predictors are plotted and a confusion matrix is included below. \texttt{alcohol}, \texttt{volatile\ acidity}, and \texttt{sulphates} are again the three most important predictors, but the order changed. The overall accuracy is higher here than the two-level model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 3{-}level variable}
+\NormalTok{rf\_tree3 }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(qual3 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ fa }\SpecialCharTok{+}\NormalTok{ va }\SpecialCharTok{+}\NormalTok{ ca }\SpecialCharTok{+}\NormalTok{ rs }\SpecialCharTok{+}\NormalTok{ ch }\SpecialCharTok{+}\NormalTok{ fsd }\SpecialCharTok{+}\NormalTok{ tsd }\SpecialCharTok{+}\NormalTok{ den }\SpecialCharTok{+}\NormalTok{ ph }\SpecialCharTok{+}\NormalTok{ sul }\SpecialCharTok{+}\NormalTok{ al, }\AttributeTok{data =}\NormalTok{ winez\_train, }\AttributeTok{method =} \StringTok{"rf"}\NormalTok{, }\AttributeTok{preProcess =} \FunctionTok{c}\NormalTok{(}\StringTok{"center"}\NormalTok{, }\StringTok{"scale"}\NormalTok{), }\AttributeTok{trControl =} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"cv"}\NormalTok{, }\AttributeTok{number =} \DecValTok{10}\NormalTok{), }\AttributeTok{tuneGrid =}\NormalTok{ rfGrid)}
+\NormalTok{rf3\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rf\_tree3, }\AttributeTok{newdata =}\NormalTok{ winez\_test)}
+\NormalTok{rfMatrix3 }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(rf3\_pred, winez\_test}\SpecialCharTok{$}\NormalTok{qual3)}
+\NormalTok{rf3\_test }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(rf3\_pred }\SpecialCharTok{==}\NormalTok{ winez\_test}\SpecialCharTok{$}\NormalTok{qual3)}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{varImp}\NormalTok{(rf\_tree3))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confusionMatrix}\NormalTok{(rf3\_pred, winez\_test}\SpecialCharTok{$}\NormalTok{qual3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   H   L   M
+##          H  25   0   5
+##          L   0   0   1
+##          M  18   8 263
+## 
+## Overall Statistics
+##                                           
+##                Accuracy : 0.9             
+##                  95% CI : (0.8618, 0.9306)
+##     No Information Rate : 0.8406          
+##     P-Value [Acc > NIR] : 0.001473        
+##                                           
+##                   Kappa : 0.5617          
+##                                           
+##  Mcnemar's Test P-Value : NA              
+## 
+## Statistics by Class:
+## 
+##                      Class: H Class: L Class: M
+## Sensitivity           0.58140 0.000000   0.9777
+## Specificity           0.98195 0.996795   0.4902
+## Pos Pred Value        0.83333 0.000000   0.9100
+## Neg Pred Value        0.93793 0.974922   0.8065
+## Prevalence            0.13437 0.025000   0.8406
+## Detection Rate        0.07812 0.000000   0.8219
+## Detection Prevalence  0.09375 0.003125   0.9031
+## Balanced Accuracy     0.78167 0.498397   0.7339
+\end{verbatim}
+
+The plot below shows how the accuracy rate changes with the number of randomly selected variables in each tree (denoted as \(m\)).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# random forest plot: accuracy rates vs number of predictors}
+\NormalTok{rfplot1 }\OtherTok{\textless{}{-}} \FunctionTok{plot}\NormalTok{(rf\_tree2)}
+\NormalTok{rfplot2 }\OtherTok{\textless{}{-}} \FunctionTok{plot}\NormalTok{(rf\_tree3)}
+\NormalTok{gridExtra}\SpecialCharTok{::}\FunctionTok{grid.arrange}\NormalTok{(rfplot1, rfplot2, }\AttributeTok{nrow =} \DecValTok{1}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth,height=1\textheight]{bookdown-demo_files/figure-latex/rfplots-1} 
+
+}
+
+\caption{Accuracy Rates vs Number of Predictors Used for 2-level Variable (left) and 3-level Variable (right)}\label{fig:rfplots}
+\end{figure}
+
+\hypertarget{prediction-models}{%
+\section{Prediction Models}\label{prediction-models}}
+
+Next we construct Random Forests models with the continuous outcome variable. We first set \(m\) as the square root of the number of predictors, as this is commonly recommended. Confusion matrices cannot be provided for continuous responses, but we can calculate MSEs, find important variables, and show how the error decreases with the number of trees constructed. The three most important variables are again \texttt{alcohol}, \texttt{sulphates}, and \texttt{volatile\ acidity}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# randomforests, mtry = sqrt(11)}
+\NormalTok{rf.def.Wine }\OtherTok{\textless{}{-}} \FunctionTok{randomForest}\NormalTok{(qual }\SpecialCharTok{\textasciitilde{}}\NormalTok{ fa }\SpecialCharTok{+}\NormalTok{ va }\SpecialCharTok{+}\NormalTok{ ca }\SpecialCharTok{+}\NormalTok{ rs }\SpecialCharTok{+}\NormalTok{ ch }\SpecialCharTok{+}\NormalTok{ fsd }\SpecialCharTok{+}\NormalTok{ tsd }\SpecialCharTok{+}\NormalTok{ den }\SpecialCharTok{+}\NormalTok{ ph }\SpecialCharTok{+}\NormalTok{ sul }\SpecialCharTok{+}\NormalTok{ al, }\AttributeTok{data =}\NormalTok{ winez\_train, }\AttributeTok{importance =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{yhat.rf.Wine }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rf.def.Wine, }\AttributeTok{newdata =}\NormalTok{ winez\_test)}
+\NormalTok{rf.mtry3.testMSE }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{((yhat.rf.Wine }\SpecialCharTok{{-}}\NormalTok{ winez\_test}\SpecialCharTok{$}\NormalTok{qual)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\FunctionTok{varImp}\NormalTok{(rf.def.Wine)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Overall
+## fa  22.11429
+## va  37.04878
+## ca  23.74687
+## rs  18.55913
+## ch  24.96786
+## fsd 21.65164
+## tsd 32.28444
+## den 27.19701
+## ph  22.36903
+## sul 43.52900
+## al  54.53284
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(rf.def.Wine)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+We try several different numbers for the number of variable included in each tree. \texttt{alcohol}, \texttt{sulphates}, and \texttt{volatile\ acidity} remain the three most important predictors. Two plots are provided to show how the error decreases with the number of trees.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# mtry = 4}
+\NormalTok{rf.def.Wine.m4 }\OtherTok{\textless{}{-}} \FunctionTok{randomForest}\NormalTok{(qual }\SpecialCharTok{\textasciitilde{}}\NormalTok{ fa }\SpecialCharTok{+}\NormalTok{ va }\SpecialCharTok{+}\NormalTok{ ca }\SpecialCharTok{+}\NormalTok{ rs }\SpecialCharTok{+}\NormalTok{ ch }\SpecialCharTok{+}\NormalTok{ fsd }\SpecialCharTok{+}\NormalTok{ tsd }\SpecialCharTok{+}\NormalTok{ den }\SpecialCharTok{+}\NormalTok{ ph }\SpecialCharTok{+}\NormalTok{ sul }\SpecialCharTok{+}\NormalTok{ al, }\AttributeTok{data =}\NormalTok{ winez\_train, }\AttributeTok{mtry =} \DecValTok{4}\NormalTok{, }\AttributeTok{importance =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{rf.pred.m4 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rf.def.Wine.m4, }\AttributeTok{newdata =}\NormalTok{ winez\_test)}
+\NormalTok{rf.mtry4.testMSE }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{((rf.pred.m4 }\SpecialCharTok{{-}}\NormalTok{ winez\_test}\SpecialCharTok{$}\NormalTok{qual)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\FunctionTok{varImp}\NormalTok{(rf.def.Wine.m4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Overall
+## fa  22.78226
+## va  39.40868
+## ca  22.22551
+## rs  16.27685
+## ch  25.12775
+## fsd 21.58168
+## tsd 30.36789
+## den 27.20655
+## ph  20.22223
+## sul 47.59070
+## al  60.54909
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# mtry = 7}
+\NormalTok{rf.def.Wine.m7 }\OtherTok{\textless{}{-}} \FunctionTok{randomForest}\NormalTok{(qual }\SpecialCharTok{\textasciitilde{}}\NormalTok{ fa }\SpecialCharTok{+}\NormalTok{ va }\SpecialCharTok{+}\NormalTok{ ca }\SpecialCharTok{+}\NormalTok{ rs }\SpecialCharTok{+}\NormalTok{ ch }\SpecialCharTok{+}\NormalTok{ fsd }\SpecialCharTok{+}\NormalTok{ tsd }\SpecialCharTok{+}\NormalTok{ den }\SpecialCharTok{+}\NormalTok{ ph }\SpecialCharTok{+}\NormalTok{ sul }\SpecialCharTok{+}\NormalTok{ al, }\AttributeTok{data =}\NormalTok{ winez\_train, }\AttributeTok{mtry =} \DecValTok{7}\NormalTok{, }\AttributeTok{importance =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{rf.pred.m7 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rf.def.Wine.m7, }\AttributeTok{newdata =}\NormalTok{ winez\_test)}
+\NormalTok{rf.mtry7.testMSE }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{((rf.pred.m7 }\SpecialCharTok{{-}}\NormalTok{ winez\_test}\SpecialCharTok{$}\NormalTok{qual)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\FunctionTok{varImp}\NormalTok{(rf.def.Wine.m7)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Overall
+## fa  22.31197
+## va  43.85162
+## ca  22.34412
+## rs  15.79913
+## ch  26.89172
+## fsd 22.86225
+## tsd 35.73985
+## den 28.37794
+## ph  24.39275
+## sul 55.85386
+## al  71.99840
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(rf.def.Wine.m4)}
+\FunctionTok{plot}\NormalTok{(rf.def.Wine.m7)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+Lastly, we put the MSEs from these models together. The differences are very small, but the model that uses \(m=\sqrt{p}\) has a slightly lower MSE.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(rf.mtry3.testMSE, rf.mtry4.testMSE, rf.mtry7.testMSE)}
+\FunctionTok{colnames}\NormalTok{(res) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"squre root of p"}\NormalTok{, }\StringTok{"4"}\NormalTok{, }\StringTok{"7"}\NormalTok{)}
+\FunctionTok{rownames}\NormalTok{(res) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"MSE"}\NormalTok{)}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(res)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|r|r|r}
+\hline
+  & squre root of p & 4 & 7\\
+\hline
+MSE & 0.289515 & 0.2907887 & 0.292777\\
+\hline
+\end{tabular}
+
+\hypertarget{case-studies}{%
+\chapter{Case Studies}\label{case-studies}}
+
+Since machine learning models are relatively easy to construct, they can at least be used to compare results or explore areas in which not much is known, so hypotheses can be made to help guide the directions of process-based models. Here we provide overviews of three case studies to demonstrate how ML models can benefit environmental and natural resource management studies.
+
+\hypertarget{case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes}{%
+\section{Case Study 1: Machine learning approach for modeling daily pluvial flood dynamics in agricultural landscapes}\label{case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes}}
+
+\hypertarget{takeaway}{%
+\subsection{Takeaway}\label{takeaway}}
+
+With the remote sensed images as important data sources, the researchers had to do a lot of pre-processing. While pre-processing images might seem time consuming, once the workflow is established, studying flood in other areas becomes easier, as long as images are available. This is one of the strengths of ML models--the process can be at least partially automated, and data is more easily obtained than if measuring at each site is required.
+
+\hypertarget{summary}{%
+\subsection{Summary}\label{summary}}
+
+In this study, \citet{fidan2023} built a Random Forests model using gridded rainfall data, derived from remotely sensed imagery, from the 2016 hurricane Matthew's impact in Kinston, North Carolina. Besides the proprietary images, the researchers also included readily available geospatial landscape traits for the models. With the objectives of (1) developing a pluvial flood dataset using imagery, (2) testing the performance of Random Forests models for the modeling flood in ``low-lying and flat agricultural terrain,'' (3) finding important predictors, and (4) ``generat{[}ing{]} pluvial flood time series.''
+
+The outcome variable was binary in terms of flooding. Each pixel was treated as one data point. Non-flooded areas were covered by 5,875,480 pixels, and flooded areas by 678,010 pixels. Since there were many more non-flooded pixels than flooded pixels, overall accuracy alone would not be a good performance metric, since, if the model always predicted that a pixel was not flooded, the accuracy rate would be high. The researchers chose other metrics such as precision, recall, specificity, and F1 scores to reflect model performance in different scenarios. The model achieved an overall accuracy of 0.97 and an F1 score of 0.69. Considering that the no information rate (if the model predicts non-flooded all the time) was around 88.5\%, this performance seemed satisfactory. They found the important variables to be population density, distance to the nearest river, height above nearest drainage, and distance to the nearest road.
+
+The full paper can be accessed \href{https://www.sciencedirect.com/science/article/pii/S1364815223001445?dgcid=author}{here}.
+
+\hypertarget{case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters}{%
+\section{Case Study 2: Short-term forecasting of fecal coliforms in shellfish growing waters}\label{case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters}}
+
+\hypertarget{takeaway-1}{%
+\subsection{Takeaway}\label{takeaway-1}}
+
+This study serves as a nice case study because (1) it demonstrates that Random Forests does well with nonlinear relationships between the predictors and outcomes, (2) the performance is at least as good as other studies, (3) the findings are consistent with what researchers have known. These reasons help us establish trust in Random Forests models. Furthermore, Random Forests models are easy and cheap to construct. The R package \texttt{caret} and function \texttt{rf}, used by \citet{chazal2024}, is easy to use and quick to run, if the number of trees are reasonably chosen. The important variables, readily provided by \texttt{caret::rf}, help greatly with interpretation.
+
+\hypertarget{summary-1}{%
+\subsection{Summary}\label{summary-1}}
+
+This study's goal was to predict near-term (1-3 days) fecal contamination in coastal shellfish growing waters. For each of the five management areas, \citet{chazal2024} constructed five Random Forests models to (1) use watershed characteristics as well as antecedent hydrologic and meteorologic observations to predict the level of fecal coliform (FC), (2) test whether forecasted rainfall can be useful for predictions, and (3) find important variables. Let's focus on goals (1) and (3) for this case study.
+
+For their first goal, depending on the management areas, the \(R^2\) value was between 0.40 and 0.74. According to \citet{chazal2024}, this performance is similar to that of previous studies. The other settings were typical of ML studies. They split the data into 80\% training and 20\% testing and used the variance inflation factor (VIF) to remove variables that are collinear, which means some variables are correlated with each other. For their third goal, they found (1) antecedent rainfall, (2) river stage threshold, and (3) wind to be high on the importance for prediction. These findings are consistent with the current understanding. In short, this study demonstrates the reliability and ease for construction and interpretation of Random Forests models.
+
+The full paper can be accessed \href{https://www.sciencedirect.com/science/article/pii/S0025326X24000304?via\%3Dihub}{here}.
+
+\hypertarget{case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning}{%
+\section{Case Study 3: In-season Sweetpotato Yield Forecasting using Multitemporal Remote Sensing Environmental Observations and Machine Learning}\label{case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning}}
+
+\hypertarget{takeaway-2}{%
+\subsection{Takeaway}\label{takeaway-2}}
+
+Although its results are considered moderate, this study demonstrates how ML models can be used to help with decision making and planning. As \citet{carbajal-carrasco2024} state, ``Even though ML models are unable to explain underlying processes, they can surpass the predictive accuracy of process-based models, making ML algorithms particularly useful for yield forecasting at scales that are often computationally prohibitive for process-based models.'' Using remote sensing data and considering a multitude of predictor sets, this study tested how to find the best combination of predictors, the best aggregation periods, and the optimal timing of constructing models. They found that the end of the mid-season was an optimal time for constructing models, leaving four to eight weeks for planning. One can assume that with further examination and inclusion of other predictors, some models can give reliable forecasting in advance. Such models are highly applicable in other fields to help with policy making, process planning, and even disaster preparedness.
+
+\hypertarget{summary-2}{%
+\subsection{Summary}\label{summary-2}}
+
+Using stationary and temporal predictors from multi-temporal remote sensing data to make early yield forecasting, \citet{carbajal-carrasco2024} used four ML methods--Random Forest Regression (RFR), Artificial Neural Networks (ANN), Support Vector Machine (SVM), and Extreme Gradient Boosting (XGB)--to construct sweetpotato yield models at the county level in and around the Coastal Plain in North Carolina from 2008 to 2022. Besides the primary goal to predict yield, the authors also aimed to (1) identify key predictors through variable selection, (2) implement the four ML methods, (3) determine the optimal aggregation periods for temporal variables, and (4) evaluate how early in the season the models can reliably predict end-of-season yields. The predictors considered included topography and soil traits (elevation, slope, aspect, sand, clay, pH, cation exchange capacity, bulk density, nitrogen, soil organic carbon), weather (maximum and minimum temperature around planting, precipitation) and vegetation greenness (NDVI). They considered 16- and 32-days as the time frames to aggregate data as well as comparing model performance of early, mid, and late models. They used the Boruta method for variable selection.
+
+The authors chose the Random Forest Regression algorithm with 16-day composite predictors using early- to mid-growing season as the best model. The \(R^2\) value is \(0.44\) and RMSE (root mean squared error) as \(3.53 t.ha^{-1}\). The authors describe the two above metrics as acceptable for forecasting. Elevation was found to be the most important predictor. They also conclude that the best time to run the model was before the end of the mid-season, approximately four to eight weeks before harvest. The authors cite the small sample size (95 records from 17 counties) as a major limitation and propose other predictors (e.g.~solar-induced chlorophyll fluorescence) and ML models (e.g.~Deep Learning) that could improve the performance.
+
+The full paper can be accessed \href{https://essopenarchive.org/users/716273/articles/870897-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning}{here}.
+
+\hypertarget{ethical-considerations}{%
+\chapter{Ethical Considerations}\label{ethical-considerations}}
+
+Ethics might sound heavy, but this section is mainly about ensuring that the analysis is carried out in a responsible and reproducible way. These concerns are not unique to machine learning models, but the complexity of ML methods makes it even more important to think about these issues.
+
+\hypertarget{rigor}{%
+\section{Rigor}\label{rigor}}
+
+As researchers, we are responsible for our findings. Constructing ML models is similar to using statistical methods. If one goes through all combinations of predictors and fits a method many, many times, one of the models are bound to have a ``statistical significant'' result. It is thus important to report all models constructed and use multiple testing adjustment when applicable (see Chapter 13 ``Multiple Testing'' in \emph{An Introduction to Statistical Learning} by \citet{james2013introduction}).
+
+\hypertarget{reproducibility}{%
+\section{Reproducibility}\label{reproducibility}}
+
+To allow for others to reproduce your work, it is important to provide enough details in terms of methods, data processing, code implementation, etc. It is also encouraged to have all the code and data available in a repository. If parts or all of the data should not be shared publicly, it helps to provide a simulated data set. GitHub is a common choice for such a purpose. \href{https://imperialcollegelondon.github.io/grad_school_git_course/l2-01-sharing_your_code/index.html}{Here} is a short introduction on how to use GitHub for code sharing.
+
+Another aspect of reproducibility might be surprising. Try to use programming scripts rather than drag-and-drop software. Starting from reading in the data, write a script to read, clean, and wrangle with the data. The scripts can preserve all the steps of data analysis. In the future, when you cannot remember how you changed the data or how you arrived at a p-value, the scripts can show all the details, but drag-and-drop software will not leave any trace.
+
+Note that the best practice is to read in the data into the programming environment and make any data cleaning and merging in the script. You can save the cleaned version in a different file, but don't change the original file with the raw data.
+
+\hypertarget{decision-making}{%
+\section{Decision making}\label{decision-making}}
+
+Since research related to environmental sciences and natural resources could likely affect decision making, we will now address some topics.
+
+\hypertarget{uncertainty-qualification}{%
+\subsection{Uncertainty qualification}\label{uncertainty-qualification}}
+
+While all supervised ML models can provide point estimates, not all can quantify uncertainty. It is, however, important to show how confident the model is about the estimates. If the conclusion of the study could affect an important policy change, it is crucial to present a full picture of the findings, which include uncertainty quantification. It is wildly different whether the model is 20\% or 95\% confident about its answer, for instance.
+
+\hypertarget{interpretability}{%
+\subsection{Interpretability}\label{interpretability}}
+
+While some models, such as neural networks, are highly efficient, they are more like black boxes and do not lend easily to interpretablity. In the case of neural networks, even if you are able to find all the weights in the hidden layers, there is really no way to interpret them. To ensure that the model arrives at a reasonable conclusion, you might consider using a model that is more interpretable, such as linear regression or tree-based methods. This way, experts with domain knowledge can examine whether the conclusion makes sense. In other words, the findings from ML models can add to researchers' understanding of the field rather than throwing out an answer that is not easily interpreted.
+
+\hypertarget{appendix}{%
+\chapter{Appendix}\label{appendix}}
+
+\hypertarget{dos-and-donts}{%
+\section{Do's and Don'ts}\label{dos-and-donts}}
+
+Below we provide some tips for what to do and what not to do when you build machine learning models.
+
+\hypertarget{dos}{%
+\subsection{Do's}\label{dos}}
+
+\begin{itemize}
+\tightlist
+\item
+  Do consider whether the data is appropriate for your research questions.
+\item
+  Do data exploratory analysis before jumping into analysis. Look at summary statistics and make plots to familiarize yourself with the data.
+\item
+  Document the process with reasonable details, so you or other researchers can reproduce the study if needed.
+\item
+  Along the same line, if you write scripts for your code, add comments along the way.
+\item
+  In the publication, explain what the result entails and the limitations of the model.
+\item
+  When possible, use interpretable and/or parsimonious models. Think Occam's razor.
+\item
+  Make data and code available to others if possible.
+\item
+\end{itemize}
+
+\hypertarget{donts}{%
+\subsection{Don'ts}\label{donts}}
+
+\begin{itemize}
+\tightlist
+\item
+  Don't alter the raw data. Use a script to process data instead.
+\item
+  Don't over interpret the result. For example, if the samples all come from one geographic area, you might not be able to generalize the result to other areas.\\
+\item
+\end{itemize}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

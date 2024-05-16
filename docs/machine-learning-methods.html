@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Machine Learning Methods | Machine Learning Guidelines for Natural Resource Management Practitioners</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Machine Learning Methods | Machine Learning Guidelines for Natural Resource Management Practitioners" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="nataliegnelson/ml_primer" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Machine Learning Methods | Machine Learning Guidelines for Natural Resource Management Practitioners" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Shih-Ni Prim and Natalie Nelson" />
+
+
+<meta name="date" content="2024-05-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="evaluation.html"/>
+<link rel="next" href="workflow-demonstration.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Motivation</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#supervised-learning"><i class="fa fa-check"></i><b>2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#unsupervised-learning"><i class="fa fa-check"></i><b>2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#online-resources"><i class="fa fa-check"></i><b>2.3</b> Online Resources</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#further-reading"><i class="fa fa-check"></i><b>2.4</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#data-exploratoary-analysis"><i class="fa fa-check"></i><b>3.1</b> Data Exploratoary Analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#data-requirement"><i class="fa fa-check"></i><b>3.2</b> Data Requirement</a></li>
+<li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#strategies-for-missing-data"><i class="fa fa-check"></i><b>3.3</b> Strategies for Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data.html"><a href="data.html#removing-observations"><i class="fa fa-check"></i><b>3.3.1</b> Removing observations</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data.html"><a href="data.html#imputation"><i class="fa fa-check"></i><b>3.3.2</b> Imputation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>4</b> Evaluation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="evaluation.html"><a href="evaluation.html#training-vs-testing"><i class="fa fa-check"></i><b>4.1</b> Training vs Testing</a></li>
+<li class="chapter" data-level="4.2" data-path="evaluation.html"><a href="evaluation.html#metrics"><i class="fa fa-check"></i><b>4.2</b> Metrics</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="evaluation.html"><a href="evaluation.html#numerical-responses"><i class="fa fa-check"></i><b>4.2.1</b> Numerical Responses</a></li>
+<li class="chapter" data-level="4.2.2" data-path="evaluation.html"><a href="evaluation.html#categorical-responses"><i class="fa fa-check"></i><b>4.2.2</b> Categorical Responses</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="evaluation.html"><a href="evaluation.html#overfitting"><i class="fa fa-check"></i><b>4.3</b> Overfitting</a></li>
+<li class="chapter" data-level="4.4" data-path="evaluation.html"><a href="evaluation.html#cross-validation"><i class="fa fa-check"></i><b>4.4</b> Cross Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html"><i class="fa fa-check"></i><b>5</b> Machine Learning Methods</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#tree-based-methods"><i class="fa fa-check"></i><b>5.1</b> Tree-based Methods</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#random-forests"><i class="fa fa-check"></i><b>5.1.1</b> Random Forests</a></li>
+<li class="chapter" data-level="5.1.2" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#other-ensemble-tree-methods"><i class="fa fa-check"></i><b>5.1.2</b> Other Ensemble Tree Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#neural-network"><i class="fa fa-check"></i><b>5.2</b> Neural Network</a></li>
+<li class="chapter" data-level="5.3" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#gaussian-process-gp"><i class="fa fa-check"></i><b>5.3</b> Gaussian Process (GP)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html"><i class="fa fa-check"></i><b>6</b> Workflow Demonstration</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#prepare-data"><i class="fa fa-check"></i><b>6.1</b> Prepare Data</a></li>
+<li class="chapter" data-level="6.2" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#classification-models"><i class="fa fa-check"></i><b>6.2</b> Classification Models</a></li>
+<li class="chapter" data-level="6.3" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#prediction-models"><i class="fa fa-check"></i><b>6.3</b> Prediction Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><b>7</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="case-studies.html"><a href="case-studies.html#case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes"><i class="fa fa-check"></i><b>7.1</b> Case Study 1: Machine learning approach for modeling daily pluvial flood dynamics in agricultural landscapes</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="case-studies.html"><a href="case-studies.html#takeaway"><i class="fa fa-check"></i><b>7.1.1</b> Takeaway</a></li>
+<li class="chapter" data-level="7.1.2" data-path="case-studies.html"><a href="case-studies.html#summary"><i class="fa fa-check"></i><b>7.1.2</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="case-studies.html"><a href="case-studies.html#case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters"><i class="fa fa-check"></i><b>7.2</b> Case Study 2: Short-term forecasting of fecal coliforms in shellfish growing waters</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="case-studies.html"><a href="case-studies.html#takeaway-1"><i class="fa fa-check"></i><b>7.2.1</b> Takeaway</a></li>
+<li class="chapter" data-level="7.2.2" data-path="case-studies.html"><a href="case-studies.html#summary-1"><i class="fa fa-check"></i><b>7.2.2</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="case-studies.html"><a href="case-studies.html#case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning"><i class="fa fa-check"></i><b>7.3</b> Case Study 3: In-season Sweetpotato Yield Forecasting using Multitemporal Remote Sensing Environmental Observations and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="case-studies.html"><a href="case-studies.html#takeaway-2"><i class="fa fa-check"></i><b>7.3.1</b> Takeaway</a></li>
+<li class="chapter" data-level="7.3.2" data-path="case-studies.html"><a href="case-studies.html#summary-2"><i class="fa fa-check"></i><b>7.3.2</b> Summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>8</b> Ethical Considerations</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#rigor"><i class="fa fa-check"></i><b>8.1</b> Rigor</a></li>
+<li class="chapter" data-level="8.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#reproducibility"><i class="fa fa-check"></i><b>8.2</b> Reproducibility</a></li>
+<li class="chapter" data-level="8.3" data-path="ethical-considerations.html"><a href="ethical-considerations.html#decision-making"><i class="fa fa-check"></i><b>8.3</b> Decision making</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#uncertainty-qualification"><i class="fa fa-check"></i><b>8.3.1</b> Uncertainty qualification</a></li>
+<li class="chapter" data-level="8.3.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#interpretability"><i class="fa fa-check"></i><b>8.3.2</b> Interpretability</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>9</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="appendix.html"><a href="appendix.html#dos-and-donts"><i class="fa fa-check"></i><b>9.1</b> Do’s and Don’ts</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="appendix.html"><a href="appendix.html#dos"><i class="fa fa-check"></i><b>9.1.1</b> Do’s</a></li>
+<li class="chapter" data-level="9.1.2" data-path="appendix.html"><a href="appendix.html#donts"><i class="fa fa-check"></i><b>9.1.2</b> Don’ts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Machine Learning Guidelines for Natural Resource Management Practitioners</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="machine-learning-methods" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Machine Learning Methods<a href="machine-learning-methods.html#machine-learning-methods" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Here we discuss some machine learning methods you might find useful. Although linear regression models are commonly used, we skip it because it is well understood and many online resources can be easily located.</p>
+<div id="tree-based-methods" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Tree-based Methods<a href="machine-learning-methods.html#tree-based-methods" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tree-based methods are popular for their ease for interpretation. Essentially, the algorithm tries to split the data into subsets by finding the most significant (or consequential) variables in a way that reduces the prediction error the most. For example, in the graph below, the variable that helps reduce prediction error at the first level is gender. In other words, the property of being male or female can greatly help the algorithm predict the survival of passengers on Titanic.</p>
+<div class="float">
+<img src="images/Decision_Tree.jpg" alt="By Gilgoldm - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=90405437" />
+<div class="figcaption">By Gilgoldm - Own work, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=90405437" class="uri">https://commons.wikimedia.org/w/index.php?curid=90405437</a></div>
+</div>
+<p>Decision trees are easy to use but not very accurate for complex data; however, we can go beyond one tree. If we use multiple trees and, for instance, take the average of the predictions of all the trees, we can improve the performance. This is the idea of ensemble methods. One of the ensemble methods, Random Forests, is commonly used, including in natural resources management, and quite accurate for many kinds of data. So next we’ll dive into this one method.</p>
+<div id="random-forests" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Random Forests<a href="machine-learning-methods.html#random-forests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For Random Forests, the algorithm randomly selects a smaller number, say <span class="math inline">\(m\)</span>, of predictors from the total number, say <span class="math inline">\(p\)</span>, each time a tree is being fit. This process is repeated many times, for example, <span class="math inline">\(500\)</span> times. The average (for continuous responses) or the majority votes (for discrete responses) of the predictions from the individual trees are used as final predictions. By randomly choosing a subset of predictors each time, Random Forests can avoid relying on the same variables every time and prevent overfitting.</p>
+<p>Even though coefficients of each predictors are not available for random forests, you can easily get the important variables and at least know which variables are more important for predicting the response. You can also use Random Forests as a tool for variable selection and then use a different method to fit the model on a subset of predictors chosen by Random Forests.</p>
+<p>See <a href="workflow-demonstration.html#workflow-demonstration">Workflow Demonstration</a> for examples of Random Forests models.</p>
+</div>
+<div id="other-ensemble-tree-methods" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Other Ensemble Tree Methods<a href="machine-learning-methods.html#other-ensemble-tree-methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Other ensemble tree methods include boosting and bagging. If you are interested, take a look at Chapter 8 (Tree-Based Methods) of <em>An Introduction to Statistical Learning</em> by <span class="citation">James et al. (<a href="#ref-james2013introduction">2013</a>)</span>.</p>
+</div>
+</div>
+<div id="neural-network" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Neural Network<a href="machine-learning-methods.html#neural-network" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Neural network has been enjoying its popularity. A neural network model is composed of an input layer, some hidden layers, and an output layer, as seen below. There is only one hidden layer below. When there are enough hidden layers, the model is then called deep learning.</p>
+<div class="float">
+<img src="images/Colored_neural_network.svg.png" alt="By Glosser.ca - Own work, Derivative of File: Artificial neural network.svg, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=24913461" />
+<div class="figcaption">By Glosser.ca - Own work, Derivative of File: Artificial neural network.svg, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=24913461" class="uri">https://commons.wikimedia.org/w/index.php?curid=24913461</a></div>
+</div>
+<p>So the input layer is the observed predictors, and each of the hidden layers has nodes that contain coefficients. You can think of these coefficients similar to those for linear models, except they do not have linear relationships with the observed predictors. These values are derived as the best fit between data and some kind of cost function; essentially, these values are meant to minimize the differences between observed outcome and predictions. When the values from one hidden layer are passed onto the next layer, a nonlinear activation function called <a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">ReLU</a> is commonly used. If the task is classification, the layer right before output is often an algorithm to turn the values into predicted class. While neural network is a powerful ML model, the values in the nodes in the hidden layers are not interpretable. So this indeed is a black-box method. For interested readers, check out Chapter 10 Deep Learning in <span class="citation">James et al. (<a href="#ref-james2013introduction">2013</a>)</span> (<em>An Introduction to Statistical Learning</em>).</p>
+</div>
+<div id="gaussian-process-gp" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Gaussian Process (GP)<a href="machine-learning-methods.html#gaussian-process-gp" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Another ML method that could be useful for natural resource management type of research is Gaussian Process. This method, commonly called kriging in spatial statistics, is non-parametric, which sounds like there are no parameters in the model but in fact means there can be an infinite number of parameters. (Of course in any real model we’ll have finite parameters, but that’s the idea.) The fact that the parameters can increase towards infinity tells us that this is a flexible model. Essentially, for a GP model, and here I quote from Chapter 5 of Gramacy’s <em>Surrogates</em>, “any finite collection of realizations (i.e. <span class="math inline">\(n\)</span> observations) is modeled as having a multivariate normal (MVN) distribution.” In other words, the model tries to learn information from similar items, judging from some kind of distance from each other. MVN has some great properties. And, when there is a new data point, all the observed data points can be used to make prediction for it.</p>
+<p>GP is widely used in the machine learning, computer experiments, and spatial statistics communities. There are ready-made R packages, such as <code>GpGp</code> and <code>deepgp</code>. It’s also easy to use in Python. Chapter 5 (<a href="https://bookdown.org/rbg/surrogates/chap5.html">“Gaussian Process Regression”</a>) of the book <em>Surrogates</em> by <span class="citation">Gramacy (<a href="#ref-gramacy2020surrogates">2020</a>)</span> is a great resource if you are interested in learning more about Gaussian process! If you would like to see some theory of GP, check out another classic book <a href="https://gaussianprocess.org/gpml/"><em>Gaussian Processes for Machine learning</em></a> by <span class="citation">Rasmussen and Williams (<a href="#ref-CR2006gp">2006</a>)</span>.</p>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-gramacy2020surrogates" class="csl-entry">
+Gramacy, Robert B. 2020. <em>Surrogates: <span>G</span>aussian Process Modeling, Design and  Optimization for the Applied Sciences</em>. Boca Raton, Florida: Chapman Hall/CRC. <a href="http://bobby.gramacy.com/surrogates/">http://bobby.gramacy.com/surrogates/</a>.
+</div>
+<div id="ref-james2013introduction" class="csl-entry">
+James, Gareth, Daniela Witten, Trevor Hastie, Robert Tibshirani, et al. 2013. <em>An Introduction to Statistical Learning</em>. Vol. 112. Springer. <a href="https://www.statlearning.com/">https://www.statlearning.com/</a>.
+</div>
+<div id="ref-CR2006gp" class="csl-entry">
+Rasmussen, Carl Edward, and Christopher K. I. Williams. 2006. <em>Gaussian <span>P</span>rocesses for <span>M</span>achine <span>L</span>earning</em>. The MIT Press. <a href="https://gaussianprocess.org/gpml/">https://gaussianprocess.org/gpml/</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="evaluation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="workflow-demonstration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-method.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

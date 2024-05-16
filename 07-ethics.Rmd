@@ -1,0 +1,27 @@
+# Ethical Considerations  
+
+Ethics might sound heavy, but this section is mainly about ensuring that the analysis is carried out in a responsible and reproducible way. These concerns are not unique to machine learning models, but the complexity of ML methods makes it even more important to think about these issues.  
+
+## Rigor  
+
+As researchers, we are responsible for our findings. Constructing ML models is similar to using statistical methods. If one goes through all combinations of predictors and fits a method many, many times, one of the models are bound to have a "statistical significant" result. It is thus important to report all models constructed and use multiple testing adjustment when applicable (see Chapter 13 "Multiple Testing" in *An Introduction to Statistical Learning* by @james2013introduction). 
+
+## Reproducibility  
+
+To allow for others to reproduce your work, it is important to provide enough details in terms of methods, data processing, code implementation, etc. It is also encouraged to have all the code and data available in a repository. If parts or all of the data should not be shared publicly, it helps to provide a simulated data set. GitHub is a common choice for such a purpose. [Here](https://imperialcollegelondon.github.io/grad_school_git_course/l2-01-sharing_your_code/index.html) is a short introduction on how to use GitHub for code sharing.  
+
+Another aspect of reproducibility might be surprising. Try to use programming scripts rather than drag-and-drop software. Starting from reading in the data, write a script to read, clean, and wrangle with the data. The scripts can preserve all the steps of data analysis. In the future, when you cannot remember how you changed the data or how you arrived at a p-value, the scripts can show all the details, but drag-and-drop software will not leave any trace.
+
+Note that the best practice is to read in the data into the programming environment and make any data cleaning and merging in the script. You can save the cleaned version in a different file, but don't change the original file with the raw data.  
+
+## Decision making  
+
+Since research related to environmental sciences and natural resources could likely affect decision making, we will now address some topics.  
+
+### Uncertainty qualification  
+
+While all supervised ML models can provide point estimates, not all can quantify uncertainty. It is, however, important to show how confident the model is about the estimates. If the conclusion of the study could affect an important policy change, it is crucial to present a full picture of the findings, which include uncertainty quantification. It is wildly different whether the model is 20% or 95% confident about its answer, for instance.  
+
+### Interpretability  
+
+While some models, such as neural networks, are highly efficient, they are more like black boxes and do not lend easily to interpretablity. In the case of neural networks, even if you are able to find all the weights in the hidden layers, there is really no way to interpret them. To ensure that the model arrives at a reasonable conclusion, you might consider using a model that is more interpretable, such as linear regression or tree-based methods. This way, experts with domain knowledge can examine whether the conclusion makes sense. In other words, the findings from ML models can add to researchers' understanding of the field rather than throwing out an answer that is not easily interpreted.  

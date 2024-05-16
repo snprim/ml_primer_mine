@@ -1,0 +1,138 @@
+# Workflow Demonstration 
+
+In this section, we use a dataset to exemplify a typical workflow for constructing ML models. We skip exploratory data analysis, since we have already addressed that aspect in [Data]. The dataset contains wine quality and traits, and our goal is to predict the quality of wine using the traits. The dataset can be found [here](https://www.kaggle.com/datasets/yasserh/wine-quality-dataset).  
+ 
+
+```{r, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, cache = TRUE)
+library(tree)
+library(tidyverse)
+library(caret)
+library(rattle)
+library(randomForest)
+```
+
+## Prepare Data  
+
+We first read in the data and rename the variables, so coding is easier. 
+
+```{r}
+wine <- read_delim("materials/winequality-red.csv", delim = ';')
+# shorten variable names
+fa <- wine$`fixed acidity`
+va <- as.numeric(wine$`volatile acidity`)
+ca <- as.numeric(wine$`citric acid`)
+rs <- wine$`residual sugar`
+ch <- as.numeric(wine$chlorides)
+fsd <- wine$`free sulfur dioxide`
+tsd <- wine$`total sulfur dioxide`
+den <- as.numeric(wine$density)
+ph <- wine$pH
+sul <- as.numeric(wine$sulphates)
+al <- wine$alcohol
+qual <- wine$quality
+winez <- data.frame(fa, va, ca, rs, ch, fsd, tsd, den, ph, sul, al, qual)
+```
+
+To demonstrate how to construct Random Forests models with continuous and discrete outcomes, we also transform the continuous variable, wine quality, our response variable, into two discrete variables. One has two levels: high vs low, and one has three levels: H, M, and L. The thresholds are decided rather arbitrarily, and you can use your domain knowledge to gauge how to set the thresholds. 
+
+```{r}
+# collapse qual into 2 labels
+winez$qual2 <- as.factor(ifelse(winez$qual < 6, "low", "high"))
+# collapse qual into 3 labels
+winez$qual3 <- as.factor(ifelse(winez$qual < 5, "L", ifelse(winez$qual < 7, "M", "H")))
+table(qual)
+table(winez$qual2)
+table(winez$qual3)
+```
+
+Next we randomly separate the dataset into a training set (80% of the rows) and a testing set (20% of the rows). A seed is set so that the result can be reproduced. 
+
+```{r}
+# separate data into a training set and a test set 
+set.seed(2)
+train <- sample(nrow(winez), nrow(winez)*.8)
+winez_train <- winez[train,]
+winez_test <- winez[-train,]
+```
+
+## Classification Models  
+
+Now we construct a Random Forests model with the two-level response. After the model is run, we calculate the predictions using the `predict` function. A plot for the important predictors are provided. We can see that `alcohol`, `sulphates`, and `volatile acidity` are three most important predictors for the outcome variable. A confusion matrix is created, which shows different metrics such as overall accuracy rate, sensitivity, specificity, etc.  
+
+```{r rf, cache = TRUE}
+# random forest
+rfGrid <- expand.grid(mtry = 2:8)
+# 2-level variable
+rf_tree2 <- train(qual2 ~ fa + va + ca + rs + ch + fsd + tsd + den + ph + sul + al, data = winez_train, method = "rf", preProcess = c("center", "scale"), trControl = trainControl(method = "cv", number = 10), tuneGrid = rfGrid)
+rf2_pred <- predict(rf_tree2, newdata = winez_test)
+rfMatrix2 <- table(rf2_pred, winez_test$qual2)
+rf2_test <- mean(rf2_pred == winez_test$qual2)
+plot(varImp(rf_tree2))
+confusionMatrix(rf2_pred, winez_test$qual2)
+```
+
+Next we create a model with the three-level outcome variable. Again, important predictors are plotted and a confusion matrix is included below. `alcohol`, `volatile acidity`, and `sulphates` are again the three most important predictors, but the order changed. The overall accuracy is higher here than the two-level model. 
+
+```{r, cache = TRUE}
+# 3-level variable
+rf_tree3 <- train(qual3 ~ fa + va + ca + rs + ch + fsd + tsd + den + ph + sul + al, data = winez_train, method = "rf", preProcess = c("center", "scale"), trControl = trainControl(method = "cv", number = 10), tuneGrid = rfGrid)
+rf3_pred <- predict(rf_tree3, newdata = winez_test)
+rfMatrix3 <- table(rf3_pred, winez_test$qual3)
+rf3_test <- mean(rf3_pred == winez_test$qual3)
+plot(varImp(rf_tree3))
+confusionMatrix(rf3_pred, winez_test$qual3)
+```
+
+The plot below shows how the accuracy rate changes with the number of randomly selected variables in each tree (denoted as $m$).  
+
+```{r rfplots, fig.cap = "Accuracy Rates vs Number of Predictors Used for 2-level Variable (left) and 3-level Variable (right)", out.width = "100%", out.height = "100%", fig.align = "center", regfloat = TRUE}
+# random forest plot: accuracy rates vs number of predictors
+rfplot1 <- plot(rf_tree2)
+rfplot2 <- plot(rf_tree3)
+gridExtra::grid.arrange(rfplot1, rfplot2, nrow = 1, ncol = 2)
+```
+
+## Prediction Models  
+
+Next we construct Random Forests models with the continuous outcome variable. We first set $m$ as the square root of the number of predictors, as this is commonly recommended. Confusion matrices cannot be provided for continuous responses, but we can calculate MSEs, find important variables, and show how the error decreases with the number of trees constructed. The three most important variables are again `alcohol`, `sulphates`, and `volatile acidity`. 
+
+```{r}
+# randomforests, mtry = sqrt(11)
+rf.def.Wine <- randomForest(qual ~ fa + va + ca + rs + ch + fsd + tsd + den + ph + sul + al, data = winez_train, importance = TRUE)
+yhat.rf.Wine <- predict(rf.def.Wine, newdata = winez_test)
+rf.mtry3.testMSE <- mean((yhat.rf.Wine - winez_test$qual)^2)
+varImp(rf.def.Wine)
+plot(rf.def.Wine)
+```
+
+We try several different numbers for the number of variable included in each tree. `alcohol`, `sulphates`, and `volatile acidity` remain the three most important predictors. Two plots are provided to show how the error decreases with the number of trees.    
+
+```{r}
+# mtry = 4
+rf.def.Wine.m4 <- randomForest(qual ~ fa + va + ca + rs + ch + fsd + tsd + den + ph + sul + al, data = winez_train, mtry = 4, importance = TRUE)
+rf.pred.m4 <- predict(rf.def.Wine.m4, newdata = winez_test)
+rf.mtry4.testMSE <- mean((rf.pred.m4 - winez_test$qual)^2)
+varImp(rf.def.Wine.m4)
+      
+# mtry = 7
+rf.def.Wine.m7 <- randomForest(qual ~ fa + va + ca + rs + ch + fsd + tsd + den + ph + sul + al, data = winez_train, mtry = 7, importance = TRUE)
+rf.pred.m7 <- predict(rf.def.Wine.m7, newdata = winez_test)
+rf.mtry7.testMSE <- mean((rf.pred.m7 - winez_test$qual)^2)
+varImp(rf.def.Wine.m7)
+
+par(mfrow = c(1, 2))
+plot(rf.def.Wine.m4)
+plot(rf.def.Wine.m7)
+
+```
+
+Lastly, we put the MSEs from these models together. The differences are very small, but the model that uses $m=\sqrt{p}$ has a slightly lower MSE. 
+
+```{r}
+res <- data.frame(rf.mtry3.testMSE, rf.mtry4.testMSE, rf.mtry7.testMSE)
+colnames(res) <- c("squre root of p", "4", "7")
+rownames(res) <- c("MSE")
+knitr::kable(res)
+```
+

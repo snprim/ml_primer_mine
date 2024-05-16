@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Evaluation | Machine Learning Guidelines for Natural Resource Management Practitioners</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Evaluation | Machine Learning Guidelines for Natural Resource Management Practitioners" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="nataliegnelson/ml_primer" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Evaluation | Machine Learning Guidelines for Natural Resource Management Practitioners" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Shih-Ni Prim and Natalie Nelson" />
+
+
+<meta name="date" content="2024-05-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data.html"/>
+<link rel="next" href="machine-learning-methods.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Motivation</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#supervised-learning"><i class="fa fa-check"></i><b>2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#unsupervised-learning"><i class="fa fa-check"></i><b>2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#online-resources"><i class="fa fa-check"></i><b>2.3</b> Online Resources</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#further-reading"><i class="fa fa-check"></i><b>2.4</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#data-exploratoary-analysis"><i class="fa fa-check"></i><b>3.1</b> Data Exploratoary Analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#data-requirement"><i class="fa fa-check"></i><b>3.2</b> Data Requirement</a></li>
+<li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#strategies-for-missing-data"><i class="fa fa-check"></i><b>3.3</b> Strategies for Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data.html"><a href="data.html#removing-observations"><i class="fa fa-check"></i><b>3.3.1</b> Removing observations</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data.html"><a href="data.html#imputation"><i class="fa fa-check"></i><b>3.3.2</b> Imputation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>4</b> Evaluation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="evaluation.html"><a href="evaluation.html#training-vs-testing"><i class="fa fa-check"></i><b>4.1</b> Training vs Testing</a></li>
+<li class="chapter" data-level="4.2" data-path="evaluation.html"><a href="evaluation.html#metrics"><i class="fa fa-check"></i><b>4.2</b> Metrics</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="evaluation.html"><a href="evaluation.html#numerical-responses"><i class="fa fa-check"></i><b>4.2.1</b> Numerical Responses</a></li>
+<li class="chapter" data-level="4.2.2" data-path="evaluation.html"><a href="evaluation.html#categorical-responses"><i class="fa fa-check"></i><b>4.2.2</b> Categorical Responses</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="evaluation.html"><a href="evaluation.html#overfitting"><i class="fa fa-check"></i><b>4.3</b> Overfitting</a></li>
+<li class="chapter" data-level="4.4" data-path="evaluation.html"><a href="evaluation.html#cross-validation"><i class="fa fa-check"></i><b>4.4</b> Cross Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html"><i class="fa fa-check"></i><b>5</b> Machine Learning Methods</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#tree-based-methods"><i class="fa fa-check"></i><b>5.1</b> Tree-based Methods</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#random-forests"><i class="fa fa-check"></i><b>5.1.1</b> Random Forests</a></li>
+<li class="chapter" data-level="5.1.2" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#other-ensemble-tree-methods"><i class="fa fa-check"></i><b>5.1.2</b> Other Ensemble Tree Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#neural-network"><i class="fa fa-check"></i><b>5.2</b> Neural Network</a></li>
+<li class="chapter" data-level="5.3" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#gaussian-process-gp"><i class="fa fa-check"></i><b>5.3</b> Gaussian Process (GP)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html"><i class="fa fa-check"></i><b>6</b> Workflow Demonstration</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#prepare-data"><i class="fa fa-check"></i><b>6.1</b> Prepare Data</a></li>
+<li class="chapter" data-level="6.2" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#classification-models"><i class="fa fa-check"></i><b>6.2</b> Classification Models</a></li>
+<li class="chapter" data-level="6.3" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#prediction-models"><i class="fa fa-check"></i><b>6.3</b> Prediction Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><b>7</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="case-studies.html"><a href="case-studies.html#case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes"><i class="fa fa-check"></i><b>7.1</b> Case Study 1: Machine learning approach for modeling daily pluvial flood dynamics in agricultural landscapes</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="case-studies.html"><a href="case-studies.html#takeaway"><i class="fa fa-check"></i><b>7.1.1</b> Takeaway</a></li>
+<li class="chapter" data-level="7.1.2" data-path="case-studies.html"><a href="case-studies.html#summary"><i class="fa fa-check"></i><b>7.1.2</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="case-studies.html"><a href="case-studies.html#case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters"><i class="fa fa-check"></i><b>7.2</b> Case Study 2: Short-term forecasting of fecal coliforms in shellfish growing waters</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="case-studies.html"><a href="case-studies.html#takeaway-1"><i class="fa fa-check"></i><b>7.2.1</b> Takeaway</a></li>
+<li class="chapter" data-level="7.2.2" data-path="case-studies.html"><a href="case-studies.html#summary-1"><i class="fa fa-check"></i><b>7.2.2</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="case-studies.html"><a href="case-studies.html#case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning"><i class="fa fa-check"></i><b>7.3</b> Case Study 3: In-season Sweetpotato Yield Forecasting using Multitemporal Remote Sensing Environmental Observations and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="case-studies.html"><a href="case-studies.html#takeaway-2"><i class="fa fa-check"></i><b>7.3.1</b> Takeaway</a></li>
+<li class="chapter" data-level="7.3.2" data-path="case-studies.html"><a href="case-studies.html#summary-2"><i class="fa fa-check"></i><b>7.3.2</b> Summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>8</b> Ethical Considerations</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#rigor"><i class="fa fa-check"></i><b>8.1</b> Rigor</a></li>
+<li class="chapter" data-level="8.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#reproducibility"><i class="fa fa-check"></i><b>8.2</b> Reproducibility</a></li>
+<li class="chapter" data-level="8.3" data-path="ethical-considerations.html"><a href="ethical-considerations.html#decision-making"><i class="fa fa-check"></i><b>8.3</b> Decision making</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#uncertainty-qualification"><i class="fa fa-check"></i><b>8.3.1</b> Uncertainty qualification</a></li>
+<li class="chapter" data-level="8.3.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#interpretability"><i class="fa fa-check"></i><b>8.3.2</b> Interpretability</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>9</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="appendix.html"><a href="appendix.html#dos-and-donts"><i class="fa fa-check"></i><b>9.1</b> Do’s and Don’ts</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="appendix.html"><a href="appendix.html#dos"><i class="fa fa-check"></i><b>9.1.1</b> Do’s</a></li>
+<li class="chapter" data-level="9.1.2" data-path="appendix.html"><a href="appendix.html#donts"><i class="fa fa-check"></i><b>9.1.2</b> Don’ts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Machine Learning Guidelines for Natural Resource Management Practitioners</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="evaluation" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Evaluation<a href="evaluation.html#evaluation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="training-vs-testing" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Training vs Testing<a href="evaluation.html#training-vs-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We should first address the concepts of training and testing. Instead of using the entire data, it is common to split the dataset into a training set and a testing set. Typically people use percentages such as 70% vs 30% or 80% vs 20%. The idea is to use only, say, 80% of the data for training, which means to run the select model on this part of data. Then you have a model with some coefficients (you can think of them as slopes) and test such results on the testing set to see how well the model performs. Since the part of the data for testing is not used in training, there is no double dipping. Sometimes people split the dataset into three sets: training, testing, and validation. So the trained models are used on the testing set for model selection. Then the validation set is used only once at the end to gauge how the model should perform if there’s new data.</p>
+</div>
+<div id="metrics" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Metrics<a href="evaluation.html#metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="numerical-responses" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Numerical Responses<a href="evaluation.html#numerical-responses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The most common metrics for numerical responses include mean squared errors (MSE), bias, and <span class="math inline">\(R^2\)</span> (or adjusted <span class="math inline">\(R^2\)</span>). The way to calculate MSE is:
+<span class="math display">\[MSE = \frac{1}{n} \sum_{i=1}^n \bigg( \hat{y}_i - y_i \bigg)^2,\]</span>
+where <span class="math inline">\(\hat{y}_i\)</span> is the predicted outcome of the <span class="math inline">\(i^{th}\)</span> observation and <span class="math inline">\(y_i\)</span> is the <span class="math inline">\(i^{th}\)</span> observed outcome. The metric shows, on average, the squared distance between predictions and true responses. Bias is calculated as
+<span class="math display">\[Bias = \frac{1}{n} \sum_{i=1}^n \bigg( \hat{y}_i - y \bigg).\]</span>
+The two metrics seem similar, but they reveal different aspects of model performance. In general, bias shows if the predictions are centered around the truth, while the MSE shows whether the predictions are centered around the truth <em>and</em> how far the predictions are from the truth. If the bias is zero, it means that the mean prediction goes towards the truth as the sample size increases to infinity. This is naturally a desired property, but you might be surprised that sometimes we are willing to accept some bias to reduce the variance.</p>
+<p>One important formula is
+<span class="math display">\[MSE = Bias^2 + Variance,\]</span>
+where
+<span class="math display">\[Variance = \frac{1}{n} \sum_{i=1}^n \bigg( \hat{y}_i - E(\hat{y}) \bigg)^2\]</span>
+and
+<span class="math display">\[E(\hat{y}) = \frac{1}{n} \sum_{i=1}^n \hat{y}_i.\]</span>
+We skip the derivation here, but the interested readers can find the derivation readily online. The formula tells us that, if the MSE is large but the bias is small, this means the model has a large variance. This is to say, if you fit the model multiple times, it has quite different results. These formulas might seem too technical, but the message is important. There is a trade-off between bias and variance; in other words, there is no free lunch. A balance between bias and variance is where many methods strive to achieve.</p>
+</div>
+<div id="categorical-responses" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Categorical Responses<a href="evaluation.html#categorical-responses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When the responses are categorical, a common way to measure the performance is a confusion matrix, which shows the numbers of predictions that are correct or incorrect. See some examples in <a href="workflow-demonstration.html#workflow-demonstration">Workflow Demonstration</a>. Other metrics include sensitivity, specificity, precision, recall, and other metrics that try to combine these metrics to present a one-number summary.</p>
+</div>
+</div>
+<div id="overfitting" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Overfitting<a href="evaluation.html#overfitting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Overfitting means that the model can make good predictions with the available data, but it cannot generalize well on new data. It is like if a student memorizes all the past exam questions without really studying the materials, then, on the exam, the student can do really well on questions coming from past exams but might do poorly on questions never seen before. Splitting data into training and testing is one strategy to avoid overfitting. Certain ML methods are less likely to overfit, such as neural networks. And there are some more strategies, such as early stopping, that can be used. Our point here is to be aware of this potential pitfall of machine learning methods.</p>
+</div>
+<div id="cross-validation" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Cross Validation<a href="evaluation.html#cross-validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One very standard way of evaluation is <span class="math inline">\(k\)</span>-fold cross validation, commonly with <span class="math inline">\(k=5\)</span> or <span class="math inline">\(k=10\)</span>. The idea is simple. Divide the data into <span class="math inline">\(k\)</span> groups. Each time, choose <span class="math inline">\(k-1\)</span> groups for training, fit the model on the last group, which is the test data, and calculate the desired metrics, such as MSE.</p>
+<p>This way, although less data is used for training, the metrics should be more accurate, because now we are not using the same data points for training and testing. Using metrics from cross validation for model selection can ensure that your model does not overfit.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="images/K-fold_cross_validation_EN.svg" alt="Image Source: https://en.wikipedia.org/wiki/Cross-validation_(statistics)"  />
+<p class="caption">
+Figure 4.1: Image Source: <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)" class="uri">https://en.wikipedia.org/wiki/Cross-validation_(statistics)</a>
+</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="machine-learning-methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-eval.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Workflow Demonstration | Machine Learning Guidelines for Natural Resource Management Practitioners</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Workflow Demonstration | Machine Learning Guidelines for Natural Resource Management Practitioners" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="nataliegnelson/ml_primer" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Workflow Demonstration | Machine Learning Guidelines for Natural Resource Management Practitioners" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Shih-Ni Prim and Natalie Nelson" />
+
+
+<meta name="date" content="2024-05-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="machine-learning-methods.html"/>
+<link rel="next" href="case-studies.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Motivation</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#supervised-learning"><i class="fa fa-check"></i><b>2.1</b> Supervised Learning</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#unsupervised-learning"><i class="fa fa-check"></i><b>2.2</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#online-resources"><i class="fa fa-check"></i><b>2.3</b> Online Resources</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#further-reading"><i class="fa fa-check"></i><b>2.4</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#data-exploratoary-analysis"><i class="fa fa-check"></i><b>3.1</b> Data Exploratoary Analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#data-requirement"><i class="fa fa-check"></i><b>3.2</b> Data Requirement</a></li>
+<li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#strategies-for-missing-data"><i class="fa fa-check"></i><b>3.3</b> Strategies for Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data.html"><a href="data.html#removing-observations"><i class="fa fa-check"></i><b>3.3.1</b> Removing observations</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data.html"><a href="data.html#imputation"><i class="fa fa-check"></i><b>3.3.2</b> Imputation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>4</b> Evaluation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="evaluation.html"><a href="evaluation.html#training-vs-testing"><i class="fa fa-check"></i><b>4.1</b> Training vs Testing</a></li>
+<li class="chapter" data-level="4.2" data-path="evaluation.html"><a href="evaluation.html#metrics"><i class="fa fa-check"></i><b>4.2</b> Metrics</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="evaluation.html"><a href="evaluation.html#numerical-responses"><i class="fa fa-check"></i><b>4.2.1</b> Numerical Responses</a></li>
+<li class="chapter" data-level="4.2.2" data-path="evaluation.html"><a href="evaluation.html#categorical-responses"><i class="fa fa-check"></i><b>4.2.2</b> Categorical Responses</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="evaluation.html"><a href="evaluation.html#overfitting"><i class="fa fa-check"></i><b>4.3</b> Overfitting</a></li>
+<li class="chapter" data-level="4.4" data-path="evaluation.html"><a href="evaluation.html#cross-validation"><i class="fa fa-check"></i><b>4.4</b> Cross Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html"><i class="fa fa-check"></i><b>5</b> Machine Learning Methods</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#tree-based-methods"><i class="fa fa-check"></i><b>5.1</b> Tree-based Methods</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#random-forests"><i class="fa fa-check"></i><b>5.1.1</b> Random Forests</a></li>
+<li class="chapter" data-level="5.1.2" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#other-ensemble-tree-methods"><i class="fa fa-check"></i><b>5.1.2</b> Other Ensemble Tree Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#neural-network"><i class="fa fa-check"></i><b>5.2</b> Neural Network</a></li>
+<li class="chapter" data-level="5.3" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#gaussian-process-gp"><i class="fa fa-check"></i><b>5.3</b> Gaussian Process (GP)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html"><i class="fa fa-check"></i><b>6</b> Workflow Demonstration</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#prepare-data"><i class="fa fa-check"></i><b>6.1</b> Prepare Data</a></li>
+<li class="chapter" data-level="6.2" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#classification-models"><i class="fa fa-check"></i><b>6.2</b> Classification Models</a></li>
+<li class="chapter" data-level="6.3" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#prediction-models"><i class="fa fa-check"></i><b>6.3</b> Prediction Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><b>7</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="case-studies.html"><a href="case-studies.html#case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes"><i class="fa fa-check"></i><b>7.1</b> Case Study 1: Machine learning approach for modeling daily pluvial flood dynamics in agricultural landscapes</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="case-studies.html"><a href="case-studies.html#takeaway"><i class="fa fa-check"></i><b>7.1.1</b> Takeaway</a></li>
+<li class="chapter" data-level="7.1.2" data-path="case-studies.html"><a href="case-studies.html#summary"><i class="fa fa-check"></i><b>7.1.2</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="case-studies.html"><a href="case-studies.html#case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters"><i class="fa fa-check"></i><b>7.2</b> Case Study 2: Short-term forecasting of fecal coliforms in shellfish growing waters</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="case-studies.html"><a href="case-studies.html#takeaway-1"><i class="fa fa-check"></i><b>7.2.1</b> Takeaway</a></li>
+<li class="chapter" data-level="7.2.2" data-path="case-studies.html"><a href="case-studies.html#summary-1"><i class="fa fa-check"></i><b>7.2.2</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="case-studies.html"><a href="case-studies.html#case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning"><i class="fa fa-check"></i><b>7.3</b> Case Study 3: In-season Sweetpotato Yield Forecasting using Multitemporal Remote Sensing Environmental Observations and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="case-studies.html"><a href="case-studies.html#takeaway-2"><i class="fa fa-check"></i><b>7.3.1</b> Takeaway</a></li>
+<li class="chapter" data-level="7.3.2" data-path="case-studies.html"><a href="case-studies.html#summary-2"><i class="fa fa-check"></i><b>7.3.2</b> Summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>8</b> Ethical Considerations</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#rigor"><i class="fa fa-check"></i><b>8.1</b> Rigor</a></li>
+<li class="chapter" data-level="8.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#reproducibility"><i class="fa fa-check"></i><b>8.2</b> Reproducibility</a></li>
+<li class="chapter" data-level="8.3" data-path="ethical-considerations.html"><a href="ethical-considerations.html#decision-making"><i class="fa fa-check"></i><b>8.3</b> Decision making</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#uncertainty-qualification"><i class="fa fa-check"></i><b>8.3.1</b> Uncertainty qualification</a></li>
+<li class="chapter" data-level="8.3.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#interpretability"><i class="fa fa-check"></i><b>8.3.2</b> Interpretability</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>9</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="appendix.html"><a href="appendix.html#dos-and-donts"><i class="fa fa-check"></i><b>9.1</b> Do’s and Don’ts</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="appendix.html"><a href="appendix.html#dos"><i class="fa fa-check"></i><b>9.1.1</b> Do’s</a></li>
+<li class="chapter" data-level="9.1.2" data-path="appendix.html"><a href="appendix.html#donts"><i class="fa fa-check"></i><b>9.1.2</b> Don’ts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Machine Learning Guidelines for Natural Resource Management Practitioners</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="workflow-demonstration" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Workflow Demonstration<a href="workflow-demonstration.html#workflow-demonstration" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this section, we use a dataset to exemplify a typical workflow for constructing ML models. We skip exploratory data analysis, since we have already addressed that aspect in <a href="data.html#data">Data</a>. The dataset contains wine quality and traits, and our goal is to predict the quality of wine using the traits. The dataset can be found <a href="https://www.kaggle.com/datasets/yasserh/wine-quality-dataset">here</a>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="workflow-demonstration.html#cb9-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">eval =</span> <span class="cn">TRUE</span>, <span class="at">cache =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-2"><a href="workflow-demonstration.html#cb9-2" tabindex="-1"></a><span class="fu">library</span>(tree)</span>
+<span id="cb9-3"><a href="workflow-demonstration.html#cb9-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-4"><a href="workflow-demonstration.html#cb9-4" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb9-5"><a href="workflow-demonstration.html#cb9-5" tabindex="-1"></a><span class="fu">library</span>(rattle)</span>
+<span id="cb9-6"><a href="workflow-demonstration.html#cb9-6" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span></code></pre></div>
+<div id="prepare-data" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Prepare Data<a href="workflow-demonstration.html#prepare-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We first read in the data and rename the variables, so coding is easier.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="workflow-demonstration.html#cb10-1" tabindex="-1"></a>wine <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;materials/winequality-red.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&#39;;&#39;</span>)</span></code></pre></div>
+<pre><code>## Rows: 1599 Columns: 12
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;;&quot;
+## dbl (12): fixed acidity, volatile acidity, citric acid, residual sugar, chlo...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="workflow-demonstration.html#cb12-1" tabindex="-1"></a><span class="co"># shorten variable names</span></span>
+<span id="cb12-2"><a href="workflow-demonstration.html#cb12-2" tabindex="-1"></a>fa <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">fixed acidity</span><span class="st">`</span></span>
+<span id="cb12-3"><a href="workflow-demonstration.html#cb12-3" tabindex="-1"></a>va <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span><span class="st">`</span><span class="at">volatile acidity</span><span class="st">`</span>)</span>
+<span id="cb12-4"><a href="workflow-demonstration.html#cb12-4" tabindex="-1"></a>ca <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span><span class="st">`</span><span class="at">citric acid</span><span class="st">`</span>)</span>
+<span id="cb12-5"><a href="workflow-demonstration.html#cb12-5" tabindex="-1"></a>rs <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">residual sugar</span><span class="st">`</span></span>
+<span id="cb12-6"><a href="workflow-demonstration.html#cb12-6" tabindex="-1"></a>ch <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span>chlorides)</span>
+<span id="cb12-7"><a href="workflow-demonstration.html#cb12-7" tabindex="-1"></a>fsd <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">free sulfur dioxide</span><span class="st">`</span></span>
+<span id="cb12-8"><a href="workflow-demonstration.html#cb12-8" tabindex="-1"></a>tsd <span class="ot">&lt;-</span> wine<span class="sc">$</span><span class="st">`</span><span class="at">total sulfur dioxide</span><span class="st">`</span></span>
+<span id="cb12-9"><a href="workflow-demonstration.html#cb12-9" tabindex="-1"></a>den <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span>density)</span>
+<span id="cb12-10"><a href="workflow-demonstration.html#cb12-10" tabindex="-1"></a>ph <span class="ot">&lt;-</span> wine<span class="sc">$</span>pH</span>
+<span id="cb12-11"><a href="workflow-demonstration.html#cb12-11" tabindex="-1"></a>sul <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wine<span class="sc">$</span>sulphates)</span>
+<span id="cb12-12"><a href="workflow-demonstration.html#cb12-12" tabindex="-1"></a>al <span class="ot">&lt;-</span> wine<span class="sc">$</span>alcohol</span>
+<span id="cb12-13"><a href="workflow-demonstration.html#cb12-13" tabindex="-1"></a>qual <span class="ot">&lt;-</span> wine<span class="sc">$</span>quality</span>
+<span id="cb12-14"><a href="workflow-demonstration.html#cb12-14" tabindex="-1"></a>winez <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(fa, va, ca, rs, ch, fsd, tsd, den, ph, sul, al, qual)</span></code></pre></div>
+<p>To demonstrate how to construct Random Forests models with continuous and discrete outcomes, we also transform the continuous variable, wine quality, our response variable, into two discrete variables. One has two levels: high vs low, and one has three levels: H, M, and L. The thresholds are decided rather arbitrarily, and you can use your domain knowledge to gauge how to set the thresholds.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="workflow-demonstration.html#cb13-1" tabindex="-1"></a><span class="co"># collapse qual into 2 labels</span></span>
+<span id="cb13-2"><a href="workflow-demonstration.html#cb13-2" tabindex="-1"></a>winez<span class="sc">$</span>qual2 <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(winez<span class="sc">$</span>qual <span class="sc">&lt;</span> <span class="dv">6</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;high&quot;</span>))</span>
+<span id="cb13-3"><a href="workflow-demonstration.html#cb13-3" tabindex="-1"></a><span class="co"># collapse qual into 3 labels</span></span>
+<span id="cb13-4"><a href="workflow-demonstration.html#cb13-4" tabindex="-1"></a>winez<span class="sc">$</span>qual3 <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(winez<span class="sc">$</span>qual <span class="sc">&lt;</span> <span class="dv">5</span>, <span class="st">&quot;L&quot;</span>, <span class="fu">ifelse</span>(winez<span class="sc">$</span>qual <span class="sc">&lt;</span> <span class="dv">7</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;H&quot;</span>)))</span>
+<span id="cb13-5"><a href="workflow-demonstration.html#cb13-5" tabindex="-1"></a><span class="fu">table</span>(qual)</span></code></pre></div>
+<pre><code>## qual
+##   3   4   5   6   7   8 
+##  10  53 681 638 199  18</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="workflow-demonstration.html#cb15-1" tabindex="-1"></a><span class="fu">table</span>(winez<span class="sc">$</span>qual2)</span></code></pre></div>
+<pre><code>## 
+## high  low 
+##  855  744</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="workflow-demonstration.html#cb17-1" tabindex="-1"></a><span class="fu">table</span>(winez<span class="sc">$</span>qual3)</span></code></pre></div>
+<pre><code>## 
+##    H    L    M 
+##  217   63 1319</code></pre>
+<p>Next we randomly separate the dataset into a training set (80% of the rows) and a testing set (20% of the rows). A seed is set so that the result can be reproduced.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="workflow-demonstration.html#cb19-1" tabindex="-1"></a><span class="co"># separate data into a training set and a test set </span></span>
+<span id="cb19-2"><a href="workflow-demonstration.html#cb19-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb19-3"><a href="workflow-demonstration.html#cb19-3" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(winez), <span class="fu">nrow</span>(winez)<span class="sc">*</span>.<span class="dv">8</span>)</span>
+<span id="cb19-4"><a href="workflow-demonstration.html#cb19-4" tabindex="-1"></a>winez_train <span class="ot">&lt;-</span> winez[train,]</span>
+<span id="cb19-5"><a href="workflow-demonstration.html#cb19-5" tabindex="-1"></a>winez_test <span class="ot">&lt;-</span> winez[<span class="sc">-</span>train,]</span></code></pre></div>
+</div>
+<div id="classification-models" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Classification Models<a href="workflow-demonstration.html#classification-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now we construct a Random Forests model with the two-level response. After the model is run, we calculate the predictions using the <code>predict</code> function. A plot for the important predictors are provided. We can see that <code>alcohol</code>, <code>sulphates</code>, and <code>volatile acidity</code> are three most important predictors for the outcome variable. A confusion matrix is created, which shows different metrics such as overall accuracy rate, sensitivity, specificity, etc.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="workflow-demonstration.html#cb20-1" tabindex="-1"></a><span class="co"># random forest</span></span>
+<span id="cb20-2"><a href="workflow-demonstration.html#cb20-2" tabindex="-1"></a>rfGrid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">mtry =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb20-3"><a href="workflow-demonstration.html#cb20-3" tabindex="-1"></a><span class="co"># 2-level variable</span></span>
+<span id="cb20-4"><a href="workflow-demonstration.html#cb20-4" tabindex="-1"></a>rf_tree2 <span class="ot">&lt;-</span> <span class="fu">train</span>(qual2 <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">preProcess =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>), <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>), <span class="at">tuneGrid =</span> rfGrid)</span>
+<span id="cb20-5"><a href="workflow-demonstration.html#cb20-5" tabindex="-1"></a>rf2_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_tree2, <span class="at">newdata =</span> winez_test)</span>
+<span id="cb20-6"><a href="workflow-demonstration.html#cb20-6" tabindex="-1"></a>rfMatrix2 <span class="ot">&lt;-</span> <span class="fu">table</span>(rf2_pred, winez_test<span class="sc">$</span>qual2)</span>
+<span id="cb20-7"><a href="workflow-demonstration.html#cb20-7" tabindex="-1"></a>rf2_test <span class="ot">&lt;-</span> <span class="fu">mean</span>(rf2_pred <span class="sc">==</span> winez_test<span class="sc">$</span>qual2)</span>
+<span id="cb20-8"><a href="workflow-demonstration.html#cb20-8" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">varImp</span>(rf_tree2))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/rf-1.png" width="672" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="workflow-demonstration.html#cb21-1" tabindex="-1"></a><span class="fu">confusionMatrix</span>(rf2_pred, winez_test<span class="sc">$</span>qual2)</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction high low
+##       high  138  25
+##       low    45 112
+##                                           
+##                Accuracy : 0.7812          
+##                  95% CI : (0.7319, 0.8253)
+##     No Information Rate : 0.5719          
+##     P-Value [Acc &gt; NIR] : 2.968e-15       
+##                                           
+##                   Kappa : 0.5613          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 0.02315         
+##                                           
+##             Sensitivity : 0.7541          
+##             Specificity : 0.8175          
+##          Pos Pred Value : 0.8466          
+##          Neg Pred Value : 0.7134          
+##              Prevalence : 0.5719          
+##          Detection Rate : 0.4313          
+##    Detection Prevalence : 0.5094          
+##       Balanced Accuracy : 0.7858          
+##                                           
+##        &#39;Positive&#39; Class : high            
+## </code></pre>
+<p>Next we create a model with the three-level outcome variable. Again, important predictors are plotted and a confusion matrix is included below. <code>alcohol</code>, <code>volatile acidity</code>, and <code>sulphates</code> are again the three most important predictors, but the order changed. The overall accuracy is higher here than the two-level model.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="workflow-demonstration.html#cb23-1" tabindex="-1"></a><span class="co"># 3-level variable</span></span>
+<span id="cb23-2"><a href="workflow-demonstration.html#cb23-2" tabindex="-1"></a>rf_tree3 <span class="ot">&lt;-</span> <span class="fu">train</span>(qual3 <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">preProcess =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>), <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>), <span class="at">tuneGrid =</span> rfGrid)</span>
+<span id="cb23-3"><a href="workflow-demonstration.html#cb23-3" tabindex="-1"></a>rf3_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_tree3, <span class="at">newdata =</span> winez_test)</span>
+<span id="cb23-4"><a href="workflow-demonstration.html#cb23-4" tabindex="-1"></a>rfMatrix3 <span class="ot">&lt;-</span> <span class="fu">table</span>(rf3_pred, winez_test<span class="sc">$</span>qual3)</span>
+<span id="cb23-5"><a href="workflow-demonstration.html#cb23-5" tabindex="-1"></a>rf3_test <span class="ot">&lt;-</span> <span class="fu">mean</span>(rf3_pred <span class="sc">==</span> winez_test<span class="sc">$</span>qual3)</span>
+<span id="cb23-6"><a href="workflow-demonstration.html#cb23-6" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">varImp</span>(rf_tree3))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="workflow-demonstration.html#cb24-1" tabindex="-1"></a><span class="fu">confusionMatrix</span>(rf3_pred, winez_test<span class="sc">$</span>qual3)</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction   H   L   M
+##          H  25   0   5
+##          L   0   0   1
+##          M  18   8 263
+## 
+## Overall Statistics
+##                                           
+##                Accuracy : 0.9             
+##                  95% CI : (0.8618, 0.9306)
+##     No Information Rate : 0.8406          
+##     P-Value [Acc &gt; NIR] : 0.001473        
+##                                           
+##                   Kappa : 0.5617          
+##                                           
+##  Mcnemar&#39;s Test P-Value : NA              
+## 
+## Statistics by Class:
+## 
+##                      Class: H Class: L Class: M
+## Sensitivity           0.58140 0.000000   0.9777
+## Specificity           0.98195 0.996795   0.4902
+## Pos Pred Value        0.83333 0.000000   0.9100
+## Neg Pred Value        0.93793 0.974922   0.8065
+## Prevalence            0.13437 0.025000   0.8406
+## Detection Rate        0.07812 0.000000   0.8219
+## Detection Prevalence  0.09375 0.003125   0.9031
+## Balanced Accuracy     0.78167 0.498397   0.7339</code></pre>
+<p>The plot below shows how the accuracy rate changes with the number of randomly selected variables in each tree (denoted as <span class="math inline">\(m\)</span>).</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="workflow-demonstration.html#cb26-1" tabindex="-1"></a><span class="co"># random forest plot: accuracy rates vs number of predictors</span></span>
+<span id="cb26-2"><a href="workflow-demonstration.html#cb26-2" tabindex="-1"></a>rfplot1 <span class="ot">&lt;-</span> <span class="fu">plot</span>(rf_tree2)</span>
+<span id="cb26-3"><a href="workflow-demonstration.html#cb26-3" tabindex="-1"></a>rfplot2 <span class="ot">&lt;-</span> <span class="fu">plot</span>(rf_tree3)</span>
+<span id="cb26-4"><a href="workflow-demonstration.html#cb26-4" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(rfplot1, rfplot2, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rfplots"></span>
+<img src="bookdown-demo_files/figure-html/rfplots-1.png" alt="Accuracy Rates vs Number of Predictors Used for 2-level Variable (left) and 3-level Variable (right)" width="100%" height="100%" />
+<p class="caption">
+Figure 6.1: Accuracy Rates vs Number of Predictors Used for 2-level Variable (left) and 3-level Variable (right)
+</p>
+</div>
+</div>
+<div id="prediction-models" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Prediction Models<a href="workflow-demonstration.html#prediction-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Next we construct Random Forests models with the continuous outcome variable. We first set <span class="math inline">\(m\)</span> as the square root of the number of predictors, as this is commonly recommended. Confusion matrices cannot be provided for continuous responses, but we can calculate MSEs, find important variables, and show how the error decreases with the number of trees constructed. The three most important variables are again <code>alcohol</code>, <code>sulphates</code>, and <code>volatile acidity</code>.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="workflow-demonstration.html#cb27-1" tabindex="-1"></a><span class="co"># randomforests, mtry = sqrt(11)</span></span>
+<span id="cb27-2"><a href="workflow-demonstration.html#cb27-2" tabindex="-1"></a>rf.def.Wine <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(qual <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-3"><a href="workflow-demonstration.html#cb27-3" tabindex="-1"></a>yhat.rf.Wine <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf.def.Wine, <span class="at">newdata =</span> winez_test)</span>
+<span id="cb27-4"><a href="workflow-demonstration.html#cb27-4" tabindex="-1"></a>rf.mtry3.testMSE <span class="ot">&lt;-</span> <span class="fu">mean</span>((yhat.rf.Wine <span class="sc">-</span> winez_test<span class="sc">$</span>qual)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb27-5"><a href="workflow-demonstration.html#cb27-5" tabindex="-1"></a><span class="fu">varImp</span>(rf.def.Wine)</span></code></pre></div>
+<pre><code>##      Overall
+## fa  22.11429
+## va  37.04878
+## ca  23.74687
+## rs  18.55913
+## ch  24.96786
+## fsd 21.65164
+## tsd 32.28444
+## den 27.19701
+## ph  22.36903
+## sul 43.52900
+## al  54.53284</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="workflow-demonstration.html#cb29-1" tabindex="-1"></a><span class="fu">plot</span>(rf.def.Wine)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>We try several different numbers for the number of variable included in each tree. <code>alcohol</code>, <code>sulphates</code>, and <code>volatile acidity</code> remain the three most important predictors. Two plots are provided to show how the error decreases with the number of trees.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="workflow-demonstration.html#cb30-1" tabindex="-1"></a><span class="co"># mtry = 4</span></span>
+<span id="cb30-2"><a href="workflow-demonstration.html#cb30-2" tabindex="-1"></a>rf.def.Wine.m4 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(qual <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">mtry =</span> <span class="dv">4</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-3"><a href="workflow-demonstration.html#cb30-3" tabindex="-1"></a>rf.pred.m4 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf.def.Wine.m4, <span class="at">newdata =</span> winez_test)</span>
+<span id="cb30-4"><a href="workflow-demonstration.html#cb30-4" tabindex="-1"></a>rf.mtry4.testMSE <span class="ot">&lt;-</span> <span class="fu">mean</span>((rf.pred.m4 <span class="sc">-</span> winez_test<span class="sc">$</span>qual)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb30-5"><a href="workflow-demonstration.html#cb30-5" tabindex="-1"></a><span class="fu">varImp</span>(rf.def.Wine.m4)</span></code></pre></div>
+<pre><code>##      Overall
+## fa  22.78226
+## va  39.40868
+## ca  22.22551
+## rs  16.27685
+## ch  25.12775
+## fsd 21.58168
+## tsd 30.36789
+## den 27.20655
+## ph  20.22223
+## sul 47.59070
+## al  60.54909</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="workflow-demonstration.html#cb32-1" tabindex="-1"></a><span class="co"># mtry = 7</span></span>
+<span id="cb32-2"><a href="workflow-demonstration.html#cb32-2" tabindex="-1"></a>rf.def.Wine.m7 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(qual <span class="sc">~</span> fa <span class="sc">+</span> va <span class="sc">+</span> ca <span class="sc">+</span> rs <span class="sc">+</span> ch <span class="sc">+</span> fsd <span class="sc">+</span> tsd <span class="sc">+</span> den <span class="sc">+</span> ph <span class="sc">+</span> sul <span class="sc">+</span> al, <span class="at">data =</span> winez_train, <span class="at">mtry =</span> <span class="dv">7</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb32-3"><a href="workflow-demonstration.html#cb32-3" tabindex="-1"></a>rf.pred.m7 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf.def.Wine.m7, <span class="at">newdata =</span> winez_test)</span>
+<span id="cb32-4"><a href="workflow-demonstration.html#cb32-4" tabindex="-1"></a>rf.mtry7.testMSE <span class="ot">&lt;-</span> <span class="fu">mean</span>((rf.pred.m7 <span class="sc">-</span> winez_test<span class="sc">$</span>qual)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb32-5"><a href="workflow-demonstration.html#cb32-5" tabindex="-1"></a><span class="fu">varImp</span>(rf.def.Wine.m7)</span></code></pre></div>
+<pre><code>##      Overall
+## fa  22.31197
+## va  43.85162
+## ca  22.34412
+## rs  15.79913
+## ch  26.89172
+## fsd 22.86225
+## tsd 35.73985
+## den 28.37794
+## ph  24.39275
+## sul 55.85386
+## al  71.99840</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="workflow-demonstration.html#cb34-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb34-2"><a href="workflow-demonstration.html#cb34-2" tabindex="-1"></a><span class="fu">plot</span>(rf.def.Wine.m4)</span>
+<span id="cb34-3"><a href="workflow-demonstration.html#cb34-3" tabindex="-1"></a><span class="fu">plot</span>(rf.def.Wine.m7)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Lastly, we put the MSEs from these models together. The differences are very small, but the model that uses <span class="math inline">\(m=\sqrt{p}\)</span> has a slightly lower MSE.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="workflow-demonstration.html#cb35-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rf.mtry3.testMSE, rf.mtry4.testMSE, rf.mtry7.testMSE)</span>
+<span id="cb35-2"><a href="workflow-demonstration.html#cb35-2" tabindex="-1"></a><span class="fu">colnames</span>(res) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;squre root of p&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;7&quot;</span>)</span>
+<span id="cb35-3"><a href="workflow-demonstration.html#cb35-3" tabindex="-1"></a><span class="fu">rownames</span>(res) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MSE&quot;</span>)</span>
+<span id="cb35-4"><a href="workflow-demonstration.html#cb35-4" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(res)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">squre root of p</th>
+<th align="right">4</th>
+<th align="right">7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">MSE</td>
+<td align="right">0.289515</td>
+<td align="right">0.2907887</td>
+<td align="right">0.292777</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="machine-learning-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="case-studies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-workflow.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
