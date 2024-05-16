@@ -1,387 +1,200 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Case Studies | Machine Learning Guidelines for Natural Resource Management Practitioners</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Chapter 7 Case Studies | Machine Learning Guidelines for Natural Resource Management Practitioners" />
-  <meta property="og:type" content="book" />
-  
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="github-repo" content="snprim/ml_primer_mine" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Case Studies | Machine Learning Guidelines for Natural Resource Management Practitioners" />
-  
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  
-
-<meta name="author" content="Shih-Ni Prim and Natalie Nelson" />
-
-
-<meta name="date" content="2024-05-16" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="workflow-demonstration.html"/>
-<link rel="next" href="ethical-considerations.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 7 Case Studies | Machine Learning Guidelines for Natural Resource Management Practitioners</title>
+<meta name="author" content="Shih-Ni Prim and Natalie Nelson">
+<meta name="description" content="Since machine learning models are relatively easy to construct, they can at least be used to compare results or explore areas in which not much is known, so hypotheses can be made to help guide...">
+<meta name="generator" content="bookdown 0.39 with bs4_book()">
+<meta property="og:title" content="Chapter 7 Case Studies | Machine Learning Guidelines for Natural Resource Management Practitioners">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Since machine learning models are relatively easy to construct, they can at least be used to compare results or explore areas in which not much is known, so hypotheses can be made to help guide...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7 Case Studies | Machine Learning Guidelines for Natural Resource Management Practitioners">
+<meta name="twitter:description" content="Since machine learning models are relatively easy to construct, they can at least be used to compare results or explore areas in which not much is known, so hypotheses can be made to help guide...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Motivation</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#supervised-learning"><i class="fa fa-check"></i><b>2.1</b> Supervised Learning</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#unsupervised-learning"><i class="fa fa-check"></i><b>2.2</b> Unsupervised Learning</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#online-resources"><i class="fa fa-check"></i><b>2.3</b> Online Resources</a></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#further-reading"><i class="fa fa-check"></i><b>2.4</b> Further Reading</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>3</b> Data</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="data.html"><a href="data.html#data-exploratoary-analysis"><i class="fa fa-check"></i><b>3.1</b> Data Exploratoary Analysis</a></li>
-<li class="chapter" data-level="3.2" data-path="data.html"><a href="data.html#data-requirement"><i class="fa fa-check"></i><b>3.2</b> Data Requirement</a></li>
-<li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#strategies-for-missing-data"><i class="fa fa-check"></i><b>3.3</b> Strategies for Missing Data</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="data.html"><a href="data.html#removing-observations"><i class="fa fa-check"></i><b>3.3.1</b> Removing observations</a></li>
-<li class="chapter" data-level="3.3.2" data-path="data.html"><a href="data.html#imputation"><i class="fa fa-check"></i><b>3.3.2</b> Imputation</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>4</b> Evaluation</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="evaluation.html"><a href="evaluation.html#training-vs-testing"><i class="fa fa-check"></i><b>4.1</b> Training vs Testing</a></li>
-<li class="chapter" data-level="4.2" data-path="evaluation.html"><a href="evaluation.html#metrics"><i class="fa fa-check"></i><b>4.2</b> Metrics</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="evaluation.html"><a href="evaluation.html#numerical-responses"><i class="fa fa-check"></i><b>4.2.1</b> Numerical Responses</a></li>
-<li class="chapter" data-level="4.2.2" data-path="evaluation.html"><a href="evaluation.html#categorical-responses"><i class="fa fa-check"></i><b>4.2.2</b> Categorical Responses</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="evaluation.html"><a href="evaluation.html#overfitting"><i class="fa fa-check"></i><b>4.3</b> Overfitting</a></li>
-<li class="chapter" data-level="4.4" data-path="evaluation.html"><a href="evaluation.html#cross-validation"><i class="fa fa-check"></i><b>4.4</b> Cross Validation</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html"><i class="fa fa-check"></i><b>5</b> Machine Learning Methods</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#tree-based-methods"><i class="fa fa-check"></i><b>5.1</b> Tree-based Methods</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#random-forests"><i class="fa fa-check"></i><b>5.1.1</b> Random Forests</a></li>
-<li class="chapter" data-level="5.1.2" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#other-ensemble-tree-methods"><i class="fa fa-check"></i><b>5.1.2</b> Other Ensemble Tree Methods</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#neural-network"><i class="fa fa-check"></i><b>5.2</b> Neural Network</a></li>
-<li class="chapter" data-level="5.3" data-path="machine-learning-methods.html"><a href="machine-learning-methods.html#gaussian-process-gp"><i class="fa fa-check"></i><b>5.3</b> Gaussian Process (GP)</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html"><i class="fa fa-check"></i><b>6</b> Workflow Demonstration</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#prepare-data"><i class="fa fa-check"></i><b>6.1</b> Prepare Data</a></li>
-<li class="chapter" data-level="6.2" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#classification-models"><i class="fa fa-check"></i><b>6.2</b> Classification Models</a></li>
-<li class="chapter" data-level="6.3" data-path="workflow-demonstration.html"><a href="workflow-demonstration.html#prediction-models"><i class="fa fa-check"></i><b>6.3</b> Prediction Models</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><b>7</b> Case Studies</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="case-studies.html"><a href="case-studies.html#case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes"><i class="fa fa-check"></i><b>7.1</b> Case Study 1: Machine learning approach for modeling daily pluvial flood dynamics in agricultural landscapes</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="case-studies.html"><a href="case-studies.html#takeaway"><i class="fa fa-check"></i><b>7.1.1</b> Takeaway</a></li>
-<li class="chapter" data-level="7.1.2" data-path="case-studies.html"><a href="case-studies.html#summary"><i class="fa fa-check"></i><b>7.1.2</b> Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="case-studies.html"><a href="case-studies.html#case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters"><i class="fa fa-check"></i><b>7.2</b> Case Study 2: Short-term forecasting of fecal coliforms in shellfish growing waters</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="case-studies.html"><a href="case-studies.html#takeaway-1"><i class="fa fa-check"></i><b>7.2.1</b> Takeaway</a></li>
-<li class="chapter" data-level="7.2.2" data-path="case-studies.html"><a href="case-studies.html#summary-1"><i class="fa fa-check"></i><b>7.2.2</b> Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="case-studies.html"><a href="case-studies.html#case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning"><i class="fa fa-check"></i><b>7.3</b> Case Study 3: In-season Sweetpotato Yield Forecasting using Multitemporal Remote Sensing Environmental Observations and Machine Learning</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="case-studies.html"><a href="case-studies.html#takeaway-2"><i class="fa fa-check"></i><b>7.3.1</b> Takeaway</a></li>
-<li class="chapter" data-level="7.3.2" data-path="case-studies.html"><a href="case-studies.html#summary-2"><i class="fa fa-check"></i><b>7.3.2</b> Summary</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>8</b> Ethical Considerations</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#rigor"><i class="fa fa-check"></i><b>8.1</b> Rigor</a></li>
-<li class="chapter" data-level="8.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#reproducibility"><i class="fa fa-check"></i><b>8.2</b> Reproducibility</a></li>
-<li class="chapter" data-level="8.3" data-path="ethical-considerations.html"><a href="ethical-considerations.html#decision-making"><i class="fa fa-check"></i><b>8.3</b> Decision making</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="ethical-considerations.html"><a href="ethical-considerations.html#uncertainty-qualification"><i class="fa fa-check"></i><b>8.3.1</b> Uncertainty qualification</a></li>
-<li class="chapter" data-level="8.3.2" data-path="ethical-considerations.html"><a href="ethical-considerations.html#interpretability"><i class="fa fa-check"></i><b>8.3.2</b> Interpretability</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>9</b> Appendix</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="appendix.html"><a href="appendix.html#dos-and-donts"><i class="fa fa-check"></i><b>9.1</b> Do’s and Don’ts</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="appendix.html"><a href="appendix.html#dos"><i class="fa fa-check"></i><b>9.1.1</b> Do’s</a></li>
-<li class="chapter" data-level="9.1.2" data-path="appendix.html"><a href="appendix.html#donts"><i class="fa fa-check"></i><b>9.1.2</b> Don’ts</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Machine Learning Guidelines for Natural Resource Management Practitioners</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Machine Learning Guidelines for Natural Resource Management Practitioners</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Motivation</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Introduction</a></li>
+<li><a class="" href="data.html"><span class="header-section-number">3</span> Data</a></li>
+<li><a class="" href="evaluation.html"><span class="header-section-number">4</span> Evaluation</a></li>
+<li><a class="" href="machine-learning-methods.html"><span class="header-section-number">5</span> Machine Learning Methods</a></li>
+<li><a class="" href="workflow-demonstration.html"><span class="header-section-number">6</span> Workflow Demonstration</a></li>
+<li><a class="active" href="case-studies.html"><span class="header-section-number">7</span> Case Studies</a></li>
+<li><a class="" href="ethical-considerations.html"><span class="header-section-number">8</span> Ethical Considerations</a></li>
+<li><a class="" href="appendix.html"><span class="header-section-number">9</span> Appendix</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="case-studies" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Case Studies<a href="case-studies.html#case-studies" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="case-studies" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> Case Studies<a class="anchor" aria-label="anchor" href="#case-studies"><i class="fas fa-link"></i></a>
+</h1>
 <p>Since machine learning models are relatively easy to construct, they can at least be used to compare results or explore areas in which not much is known, so hypotheses can be made to help guide the directions of process-based models. Here we provide overviews of three case studies to demonstrate how ML models can benefit environmental and natural resource management studies.</p>
-<div id="case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Case Study 1: Machine learning approach for modeling daily pluvial flood dynamics in agricultural landscapes<a href="case-studies.html#case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="takeaway" class="section level3 hasAnchor" number="7.1.1">
-<h3><span class="header-section-number">7.1.1</span> Takeaway<a href="case-studies.html#takeaway" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Case Study 1: Machine learning approach for modeling daily pluvial flood dynamics in agricultural landscapes<a class="anchor" aria-label="anchor" href="#case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes"><i class="fas fa-link"></i></a>
+</h2>
+<div id="takeaway" class="section level3" number="7.1.1">
+<h3>
+<span class="header-section-number">7.1.1</span> Takeaway<a class="anchor" aria-label="anchor" href="#takeaway"><i class="fas fa-link"></i></a>
+</h3>
 <p>With the remote sensed images as important data sources, the researchers had to do a lot of pre-processing. While pre-processing images might seem time consuming, once the workflow is established, studying flood in other areas becomes easier, as long as images are available. This is one of the strengths of ML models–the process can be at least partially automated, and data is more easily obtained than if measuring at each site is required.</p>
 </div>
-<div id="summary" class="section level3 hasAnchor" number="7.1.2">
-<h3><span class="header-section-number">7.1.2</span> Summary<a href="case-studies.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In this study, <span class="citation">Fidan et al. (<a href="#ref-fidan2023">2023</a>)</span> built a Random Forests model using gridded rainfall data, derived from remotely sensed imagery, from the 2016 hurricane Matthew’s impact in Kinston, North Carolina. Besides the proprietary images, the researchers also included readily available geospatial landscape traits for the models. With the objectives of (1) developing a pluvial flood dataset using imagery, (2) testing the performance of Random Forests models for the modeling flood in “low-lying and flat agricultural terrain,” (3) finding important predictors, and (4) “generat[ing] pluvial flood time series.”</p>
+<div id="summary" class="section level3" number="7.1.2">
+<h3>
+<span class="header-section-number">7.1.2</span> Summary<a class="anchor" aria-label="anchor" href="#summary"><i class="fas fa-link"></i></a>
+</h3>
+<p>In this study, <span class="citation">Fidan et al. (<a href="references.html#ref-fidan2023">2023</a>)</span> built a Random Forests model using gridded rainfall data, derived from remotely sensed imagery, from the 2016 hurricane Matthew’s impact in Kinston, North Carolina. Besides the proprietary images, the researchers also included readily available geospatial landscape traits for the models. With the objectives of (1) developing a pluvial flood dataset using imagery, (2) testing the performance of Random Forests models for the modeling flood in “low-lying and flat agricultural terrain,” (3) finding important predictors, and (4) “generat[ing] pluvial flood time series.”</p>
 <p>The outcome variable was binary in terms of flooding. Each pixel was treated as one data point. Non-flooded areas were covered by 5,875,480 pixels, and flooded areas by 678,010 pixels. Since there were many more non-flooded pixels than flooded pixels, overall accuracy alone would not be a good performance metric, since, if the model always predicted that a pixel was not flooded, the accuracy rate would be high. The researchers chose other metrics such as precision, recall, specificity, and F1 scores to reflect model performance in different scenarios. The model achieved an overall accuracy of 0.97 and an F1 score of 0.69. Considering that the no information rate (if the model predicts non-flooded all the time) was around 88.5%, this performance seemed satisfactory. They found the important variables to be population density, distance to the nearest river, height above nearest drainage, and distance to the nearest road.</p>
 <p>The full paper can be accessed <a href="https://www.sciencedirect.com/science/article/pii/S1364815223001445?dgcid=author">here</a>.</p>
 </div>
 </div>
-<div id="case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Case Study 2: Short-term forecasting of fecal coliforms in shellfish growing waters<a href="case-studies.html#case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="takeaway-1" class="section level3 hasAnchor" number="7.2.1">
-<h3><span class="header-section-number">7.2.1</span> Takeaway<a href="case-studies.html#takeaway-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This study serves as a nice case study because (1) it demonstrates that Random Forests does well with nonlinear relationships between the predictors and outcomes, (2) the performance is at least as good as other studies, (3) the findings are consistent with what researchers have known. These reasons help us establish trust in Random Forests models. Furthermore, Random Forests models are easy and cheap to construct. The R package <code>caret</code> and function <code>rf</code>, used by <span class="citation">Chazal et al. (<a href="#ref-chazal2024">2024</a>)</span>, is easy to use and quick to run, if the number of trees are reasonably chosen. The important variables, readily provided by <code>caret::rf</code>, help greatly with interpretation.</p>
+<div id="case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Case Study 2: Short-term forecasting of fecal coliforms in shellfish growing waters<a class="anchor" aria-label="anchor" href="#case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters"><i class="fas fa-link"></i></a>
+</h2>
+<div id="takeaway-1" class="section level3" number="7.2.1">
+<h3>
+<span class="header-section-number">7.2.1</span> Takeaway<a class="anchor" aria-label="anchor" href="#takeaway-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>This study serves as a nice case study because (1) it demonstrates that Random Forests does well with nonlinear relationships between the predictors and outcomes, (2) the performance is at least as good as other studies, (3) the findings are consistent with what researchers have known. These reasons help us establish trust in Random Forests models. Furthermore, Random Forests models are easy and cheap to construct. The R package <code>caret</code> and function <code>rf</code>, used by <span class="citation">Chazal et al. (<a href="references.html#ref-chazal2024">2024</a>)</span>, is easy to use and quick to run, if the number of trees are reasonably chosen. The important variables, readily provided by <code>caret::rf</code>, help greatly with interpretation.</p>
 </div>
-<div id="summary-1" class="section level3 hasAnchor" number="7.2.2">
-<h3><span class="header-section-number">7.2.2</span> Summary<a href="case-studies.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This study’s goal was to predict near-term (1-3 days) fecal contamination in coastal shellfish growing waters. For each of the five management areas, <span class="citation">Chazal et al. (<a href="#ref-chazal2024">2024</a>)</span> constructed five Random Forests models to (1) use watershed characteristics as well as antecedent hydrologic and meteorologic observations to predict the level of fecal coliform (FC), (2) test whether forecasted rainfall can be useful for predictions, and (3) find important variables. Let’s focus on goals (1) and (3) for this case study.</p>
-<p>For their first goal, depending on the management areas, the <span class="math inline">\(R^2\)</span> value was between 0.40 and 0.74. According to <span class="citation">Chazal et al. (<a href="#ref-chazal2024">2024</a>)</span>, this performance is similar to that of previous studies. The other settings were typical of ML studies. They split the data into 80% training and 20% testing and used the variance inflation factor (VIF) to remove variables that are collinear, which means some variables are correlated with each other. For their third goal, they found (1) antecedent rainfall, (2) river stage threshold, and (3) wind to be high on the importance for prediction. These findings are consistent with the current understanding. In short, this study demonstrates the reliability and ease for construction and interpretation of Random Forests models.</p>
+<div id="summary-1" class="section level3" number="7.2.2">
+<h3>
+<span class="header-section-number">7.2.2</span> Summary<a class="anchor" aria-label="anchor" href="#summary-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>This study’s goal was to predict near-term (1-3 days) fecal contamination in coastal shellfish growing waters. For each of the five management areas, <span class="citation">Chazal et al. (<a href="references.html#ref-chazal2024">2024</a>)</span> constructed five Random Forests models to (1) use watershed characteristics as well as antecedent hydrologic and meteorologic observations to predict the level of fecal coliform (FC), (2) test whether forecasted rainfall can be useful for predictions, and (3) find important variables. Let’s focus on goals (1) and (3) for this case study.</p>
+<p>For their first goal, depending on the management areas, the <span class="math inline">\(R^2\)</span> value was between 0.40 and 0.74. According to <span class="citation">Chazal et al. (<a href="references.html#ref-chazal2024">2024</a>)</span>, this performance is similar to that of previous studies. The other settings were typical of ML studies. They split the data into 80% training and 20% testing and used the variance inflation factor (VIF) to remove variables that are collinear, which means some variables are correlated with each other. For their third goal, they found (1) antecedent rainfall, (2) river stage threshold, and (3) wind to be high on the importance for prediction. These findings are consistent with the current understanding. In short, this study demonstrates the reliability and ease for construction and interpretation of Random Forests models.</p>
 <p>The full paper can be accessed <a href="https://www.sciencedirect.com/science/article/pii/S0025326X24000304?via%3Dihub">here</a>.</p>
 </div>
 </div>
-<div id="case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> Case Study 3: In-season Sweetpotato Yield Forecasting using Multitemporal Remote Sensing Environmental Observations and Machine Learning<a href="case-studies.html#case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="takeaway-2" class="section level3 hasAnchor" number="7.3.1">
-<h3><span class="header-section-number">7.3.1</span> Takeaway<a href="case-studies.html#takeaway-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Although its results are considered moderate, this study demonstrates how ML models can be used to help with decision making and planning. As <span class="citation">Carbajal-Carrasco et al. (<a href="#ref-carbajal-carrasco2024">2024</a>)</span> state, “Even though ML models are unable to explain underlying processes, they can surpass the predictive accuracy of process-based models, making ML algorithms particularly useful for yield forecasting at scales that are often computationally prohibitive for process-based models.” Using remote sensing data and considering a multitude of predictor sets, this study tested how to find the best combination of predictors, the best aggregation periods, and the optimal timing of constructing models. They found that the end of the mid-season was an optimal time for constructing models, leaving four to eight weeks for planning. One can assume that with further examination and inclusion of other predictors, some models can give reliable forecasting in advance. Such models are highly applicable in other fields to help with policy making, process planning, and even disaster preparedness.</p>
+<div id="case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Case Study 3: In-season Sweetpotato Yield Forecasting using Multitemporal Remote Sensing Environmental Observations and Machine Learning<a class="anchor" aria-label="anchor" href="#case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning"><i class="fas fa-link"></i></a>
+</h2>
+<div id="takeaway-2" class="section level3" number="7.3.1">
+<h3>
+<span class="header-section-number">7.3.1</span> Takeaway<a class="anchor" aria-label="anchor" href="#takeaway-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Although its results are considered moderate, this study demonstrates how ML models can be used to help with decision making and planning. As <span class="citation">Carbajal-Carrasco et al. (<a href="references.html#ref-carbajal-carrasco2024">2024</a>)</span> state, “Even though ML models are unable to explain underlying processes, they can surpass the predictive accuracy of process-based models, making ML algorithms particularly useful for yield forecasting at scales that are often computationally prohibitive for process-based models.” Using remote sensing data and considering a multitude of predictor sets, this study tested how to find the best combination of predictors, the best aggregation periods, and the optimal timing of constructing models. They found that the end of the mid-season was an optimal time for constructing models, leaving four to eight weeks for planning. One can assume that with further examination and inclusion of other predictors, some models can give reliable forecasting in advance. Such models are highly applicable in other fields to help with policy making, process planning, and even disaster preparedness.</p>
 </div>
-<div id="summary-2" class="section level3 hasAnchor" number="7.3.2">
-<h3><span class="header-section-number">7.3.2</span> Summary<a href="case-studies.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Using stationary and temporal predictors from multi-temporal remote sensing data to make early yield forecasting, <span class="citation">Carbajal-Carrasco et al. (<a href="#ref-carbajal-carrasco2024">2024</a>)</span> used four ML methods–Random Forest Regression (RFR), Artificial Neural Networks (ANN), Support Vector Machine (SVM), and Extreme Gradient Boosting (XGB)–to construct sweetpotato yield models at the county level in and around the Coastal Plain in North Carolina from 2008 to 2022. Besides the primary goal to predict yield, the authors also aimed to (1) identify key predictors through variable selection, (2) implement the four ML methods, (3) determine the optimal aggregation periods for temporal variables, and (4) evaluate how early in the season the models can reliably predict end-of-season yields. The predictors considered included topography and soil traits (elevation, slope, aspect, sand, clay, pH, cation exchange capacity, bulk density, nitrogen, soil organic carbon), weather (maximum and minimum temperature around planting, precipitation) and vegetation greenness (NDVI). They considered 16- and 32-days as the time frames to aggregate data as well as comparing model performance of early, mid, and late models. They used the Boruta method for variable selection.</p>
+<div id="summary-2" class="section level3" number="7.3.2">
+<h3>
+<span class="header-section-number">7.3.2</span> Summary<a class="anchor" aria-label="anchor" href="#summary-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Using stationary and temporal predictors from multi-temporal remote sensing data to make early yield forecasting, <span class="citation">Carbajal-Carrasco et al. (<a href="references.html#ref-carbajal-carrasco2024">2024</a>)</span> used four ML methods–Random Forest Regression (RFR), Artificial Neural Networks (ANN), Support Vector Machine (SVM), and Extreme Gradient Boosting (XGB)–to construct sweetpotato yield models at the county level in and around the Coastal Plain in North Carolina from 2008 to 2022. Besides the primary goal to predict yield, the authors also aimed to (1) identify key predictors through variable selection, (2) implement the four ML methods, (3) determine the optimal aggregation periods for temporal variables, and (4) evaluate how early in the season the models can reliably predict end-of-season yields. The predictors considered included topography and soil traits (elevation, slope, aspect, sand, clay, pH, cation exchange capacity, bulk density, nitrogen, soil organic carbon), weather (maximum and minimum temperature around planting, precipitation) and vegetation greenness (NDVI). They considered 16- and 32-days as the time frames to aggregate data as well as comparing model performance of early, mid, and late models. They used the Boruta method for variable selection.</p>
 <p>The authors chose the Random Forest Regression algorithm with 16-day composite predictors using early- to mid-growing season as the best model. The <span class="math inline">\(R^2\)</span> value is <span class="math inline">\(0.44\)</span> and RMSE (root mean squared error) as <span class="math inline">\(3.53 t.ha^{-1}\)</span>. The authors describe the two above metrics as acceptable for forecasting. Elevation was found to be the most important predictor. They also conclude that the best time to run the model was before the end of the mid-season, approximately four to eight weeks before harvest. The authors cite the small sample size (95 records from 17 counties) as a major limitation and propose other predictors (e.g. solar-induced chlorophyll fluorescence) and ML models (e.g. Deep Learning) that could improve the performance.</p>
 <p>The full paper can be accessed <a href="https://essopenarchive.org/users/716273/articles/870897-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning">here</a>.</p>
 
 </div>
 </div>
 </div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-carbajal-carrasco2024" class="csl-entry">
-Carbajal-Carrasco, Mariella, Daniela Jones, Cranos Williams, and Natalie G. Nelson. 2024. <span>“In-Season Sweetpotato Yield Forecasting Using Multitemporal Remote Sensing Environmental Observations and Machine Learning.”</span> <em>ESS Open Archive</em>. <a href="https://essopenarchive.org/users/716273/articles/870897-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning">https://essopenarchive.org/users/716273/articles/870897-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning</a>.
-</div>
-<div id="ref-chazal2024" class="csl-entry">
-Chazal, Natalie, Megan Carr, Andrew K. Leight, Sheila M. Saia, and Natalie G. Nelson. 2024. <span>“Short-Term Forecasting of Fecal Coliforms in Shellfish Growing Waters.”</span> <em>Marine Pollution Bulletin</em> 200: 116053. <a href="https://www.sciencedirect.com/science/article/pii/S0025326X24000304">https://www.sciencedirect.com/science/article/pii/S0025326X24000304</a>.
-</div>
-<div id="ref-fidan2023" class="csl-entry">
-Fidan, Emine, Josh Gray, Barbara Doll, and Natalie G. Nelson. 2023. <span>“Machine Learning Approach for Modeling Daily Pluvial Flood Dynamics in Agricultural Landscapes.”</span> <em>Environmental Modelling and Software</em> 167: 105758. <a href="https://www.sciencedirect.com/science/article/pii/S1364815223001445">https://www.sciencedirect.com/science/article/pii/S1364815223001445</a>.
-</div>
-</div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="workflow-demonstration.html"><span class="header-section-number">6</span> Workflow Demonstration</a></div>
+<div class="next"><a href="ethical-considerations.html"><span class="header-section-number">8</span> Ethical Considerations</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#case-studies"><span class="header-section-number">7</span> Case Studies</a></li>
+<li>
+<a class="nav-link" href="#case-study-1-machine-learning-approach-for-modeling-daily-pluvial-flood-dynamics-in-agricultural-landscapes"><span class="header-section-number">7.1</span> Case Study 1: Machine learning approach for modeling daily pluvial flood dynamics in agricultural landscapes</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#takeaway"><span class="header-section-number">7.1.1</span> Takeaway</a></li>
+<li><a class="nav-link" href="#summary"><span class="header-section-number">7.1.2</span> Summary</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#case-study-2-short-term-forecasting-of-fecal-coliforms-in-shellfish-growing-waters"><span class="header-section-number">7.2</span> Case Study 2: Short-term forecasting of fecal coliforms in shellfish growing waters</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#takeaway-1"><span class="header-section-number">7.2.1</span> Takeaway</a></li>
+<li><a class="nav-link" href="#summary-1"><span class="header-section-number">7.2.2</span> Summary</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#case-study-3-in-season-sweetpotato-yield-forecasting-using-multitemporal-remote-sensing-environmental-observations-and-machine-learning"><span class="header-section-number">7.3</span> Case Study 3: In-season Sweetpotato Yield Forecasting using Multitemporal Remote Sensing Environmental Observations and Machine Learning</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#takeaway-2"><span class="header-section-number">7.3.1</span> Takeaway</a></li>
+<li><a class="nav-link" href="#summary-2"><span class="header-section-number">7.3.2</span> Summary</a></li>
+</ul>
+</li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="workflow-demonstration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ethical-considerations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Machine Learning Guidelines for Natural Resource Management Practitioners</strong>" was written by Shih-Ni Prim and Natalie Nelson. It was last built on 2024-05-16.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-cases.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -393,7 +206,22 @@ gitbook.start({
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>
